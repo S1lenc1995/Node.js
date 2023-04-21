@@ -1,42 +1,31 @@
-//const fileDB = require('file-db');
 const fs = require('fs');
 const fsp = require("fs/promises");
 const path = require("path");
+/* const fileDB = require('jsonfile-promised'); */
+const { getData } = require('../helpers/getData');
 
 
-/* const newsPostsCollection = {
-  name: 'newsPosts',
-  newsPosts: []
-}; */
+let shema = {}
+let dbNameShema = ''
 
+const registerSchema = function (nameShema, newspostSchema) {
+  shema = {...newspostSchema}
+  dbNameShema = nameShema;
+}
 
-
-const newspostSchema = {
-  id: Number,
-  title: String,
-  text: String,
-  author: String,
-  createDate: Date,
-};
-
-async function getTable() {
+ async function getTable(nameDB) {
   try {
     let pathDB = path.join(__dirname, "list.json")
     if (!fs.existsSync(pathDB)) {
       const jsonCollection = JSON.stringify([]);
-      await fsp.writeFile(pathDB, jsonCollection)
-      //pathDB = path.join(__dirname, "list.json")
-      //const db = await fileDB.connect(path.join(__dirname, 'list.json'))   Error fileDB.connect is not a function
-      //db.registerSchema('newsPosts', newspostSchema);
+      await fsp.writeFile(pathDB, jsonCollection) 
     }
-    const database = await fsp.readFile(pathDB, "utf-8")
-    let parsedData = JSON.parse(database);
-
     return {
-      getAll: () => {
-        return parsedData;
+      getAll: async () => {
+        return await getData(__dirname, nameDB)
       },
-      getById: (_id) => {
+      getById: async (_id) => {
+        const parsedData = await getData(__dirname, nameDB)
         const search = parsedData.filter(({ id }) => id == _id)
         if(search.length === 0){
           throw new Error("The post was not found for the given id")
@@ -44,13 +33,13 @@ async function getTable() {
         return search
       },
       createdNewspost: async (newPost) => {
-        const idNewPost = parsedData.length + 1
+        let parsedData = await  getData(__dirname, nameDB)
+        const idNewPost =  parsedData.length + 1
         const now = new Date();
         newPost.id = idNewPost
         newPost.createDate = new Date(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes());
-        const shemaKeys = Object.keys(newspostSchema).sort()
+        const shemaKeys =  Object.keys(shema).sort() 
         const newPostKeys = Object.keys(newPost).sort()
-        console.log(shemaKeys, newPostKeys)
         if(JSON.stringify(shemaKeys) === JSON.stringify(newPostKeys)){
           parsedData.push(newPost);
           await fsp.writeFile(pathDB, JSON.stringify(parsedData))
@@ -60,13 +49,14 @@ async function getTable() {
         }
       },
       updatedNewsposts: async (_id, { title, text, author }) => {
+        let parsedData = await getData(__dirname, nameDB)
         let flag = false
         const updateData = parsedData.map((obj) => {
           if (_id == obj.id) {
             flag = true
             title ? obj.title = title : null;
             text ? obj.text = text : null
-            author ? obj.author = author : null
+            author ? obj.author = author : null 
             return obj
           } else {
             return obj
@@ -81,14 +71,15 @@ async function getTable() {
        
       },
       deleteById: async (_id) => {
+        let parsedData = await getData(__dirname, nameDB)
         const newData = parsedData.filter(({ id }) => id !== _id)
-        console.log(newData,parsedData )
         if(newData.length == parsedData.length){
           throw new Error("The post was not found for the given id")
         }
         await fsp.writeFile(pathDB, JSON.stringify(newData))
         return _id
-      }
+      },
+    
     };
   } catch (error) {
     console.error(error);
@@ -97,6 +88,7 @@ async function getTable() {
 }
 
 module.exports = {
-  getTable: getTable
+  getTable: getTable,
+  registerSchema: registerSchema,
 };
 
