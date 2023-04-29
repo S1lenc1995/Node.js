@@ -1,12 +1,14 @@
 import postsReducer,{
     actionFetchAllPosts,
-    actionFetchCurentPosts,
+    actionFetchCurentPost,
+    actionFetchCreateNewPost,
     
 } from "./posts.reducer";
 
 export{
     postsReducer,
     actionFetchAllPosts,
-    actionFetchCurentPosts,
+    actionFetchCurentPost,
+    actionFetchCreateNewPost,
     
 }

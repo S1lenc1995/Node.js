@@ -35,12 +35,23 @@ export const actionFetchAllPosts = ()=>(dispatch)=>{
       });
 }
 
-export const actionFetchCurentPosts = (id)=>(dispatch)=>{
+export const actionFetchCurentPost = (id)=>(dispatch)=>{
     return axios
-    .get(`http://localhost:3000/api/${id}`)
+    .get(`http://localhost:3000/api/post/${id}`)
+    .then(({data})=>{
+  
+        dispatch(actionCurentPost(data))
+    })
+    .catch(() => {
+    
+      });
+}
+
+export const actionFetchCreateNewPost = (value)=>(dispatch)=>{
+    return axios
+    .post(`http://localhost:3000/api/createNewPost`, (value))
     .then(({data})=>{
         console.log(data, 'oooohhhhhhh')
-        dispatch(actionCurentPost(data))
     })
     .catch(() => {
     
