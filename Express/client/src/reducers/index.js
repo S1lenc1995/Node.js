@@ -2,6 +2,8 @@ import postsReducer,{
     actionFetchAllPosts,
     actionFetchCurentPost,
     actionFetchCreateNewPost,
+    actionFetchUpdatePost,
+    actionFetchDeletePost,
     
 } from "./posts.reducer";
 
@@ -10,5 +12,7 @@ export{
     actionFetchAllPosts,
     actionFetchCurentPost,
     actionFetchCreateNewPost,
+    actionFetchUpdatePost,
+    actionFetchDeletePost,
     
 }

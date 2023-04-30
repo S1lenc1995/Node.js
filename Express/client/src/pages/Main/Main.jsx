@@ -11,12 +11,12 @@ import "./Main.scss"
 const Main = () => {
 
     const dispatch = useDispatch();
-
+    const allPosts = useSelector(selectorAllPosts)
     useEffect(()=>{
         dispatch(actionFetchAllPosts())
     },[])
 
-    const allPosts = useSelector(selectorAllPosts)
+   
   
     return(
         <main className='posts-container'>
@@ -26,7 +26,7 @@ const Main = () => {
          
             <div className='posts-container__news'>
             {allPosts?.map((el)=>(
-            <PostCard el={el} cut={true}/>  
+         <Link to={`/post/${el.id}`}>  <PostCard el={el} cut={true}/>  </Link>  
             ))}
             </div>
          

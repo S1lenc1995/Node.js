@@ -4,6 +4,7 @@ import {Formik, Form} from 'formik'
 import { TextField } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionFetchCreateNewPost } from "../../reducers";
+import ButtonToMainPage from "../../components/ButtonToMainPage";
 
 import "./CreatePost.scss"
 
@@ -14,15 +15,21 @@ const CreatePost = () => {
  
     return(
         <section className="container">
-         
+         <ButtonToMainPage/>
         <div className="container__form">
         <Formik 
-        initialValues={{ title: '', text: '' }} 
-        onSubmit={(values) => {
+        initialValues={{ title: '', text: '', author: '' }} 
+        onSubmit={(values, { resetForm }) => {
           console.log(values);
+          for (const key in values) {
+            if (values[key] === '') {
+              delete values[key];
+            }
+          }
           dispatch(actionFetchCreateNewPost(values))
-          // очистити форму
-        }}>
+          resetForm();
+        }}> 
+       
         {({values, handleChange}) => (
           <Form className="container__form--inputs">
          
@@ -32,6 +39,10 @@ const CreatePost = () => {
               name="title"
               value={values.title}
               onChange={handleChange}
+              style={{  margin: "20px" }} 
+             
+             
+              
             />
             <TextField 
               id="outlined-controlled" 
@@ -39,6 +50,10 @@ const CreatePost = () => {
               name="text"
               value={values.text}
               onChange={handleChange}
+              style={{ margin: "20px" }} 
+              multiline
+              rows={8}
+              maxRows={8}
             />
             <TextField 
               id="outlined-controlled" 
@@ -46,6 +61,7 @@ const CreatePost = () => {
               name="author"
               value={values.author}
               onChange={handleChange}
+               style={{ margin: "20px" }} 
             />
             <button type="submit">Submit</button>
         

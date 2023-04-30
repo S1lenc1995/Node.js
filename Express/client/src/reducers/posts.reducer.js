@@ -28,6 +28,7 @@ export const actionFetchAllPosts = ()=>(dispatch)=>{
     return axios
     .get('http://localhost:3000/api')
     .then(({data})=>{
+       
         dispatch(actionAllPosts(data))
     })
     .catch(() => {
@@ -38,23 +39,46 @@ export const actionFetchAllPosts = ()=>(dispatch)=>{
 export const actionFetchCurentPost = (id)=>(dispatch)=>{
     return axios
     .get(`http://localhost:3000/api/post/${id}`)
-    .then(({data})=>{
-  
+    .then(({data, status})=>{
+        alert(status)
         dispatch(actionCurentPost(data))
     })
-    .catch(() => {
-    
+    .catch((error) => {
+        alert(error.response.status)
       });
 }
 
-export const actionFetchCreateNewPost = (value)=>(dispatch)=>{
-    return axios
+export const actionFetchCreateNewPost = (value)=>(dispatch)=>{            
+    return axios   
     .post(`http://localhost:3000/api/createNewPost`, (value))
-    .then(({data})=>{
-        console.log(data, 'oooohhhhhhh')
+    .then(({data, status})=>{
+        alert(status)
     })
-    .catch(() => {
-    
+    .catch((error) => {
+        alert(error.response.status)
+      });
+}
+
+export const actionFetchUpdatePost = (id, value)=>(dispatch)=>{
+    return axios
+    .put(`http://localhost:3000/api/editpost/${id}`, value)
+    .then(({data, status})=>{
+        alert(status)
+        
+    })
+    .catch((error) => {
+        alert(error.response.status)
+      });
+}
+
+export const actionFetchDeletePost = (id)=>(dispatch)=>{
+    return axios
+    .delete(`http://localhost:3000/api/delete/${id}`)
+    .then(({data, status})=>{
+        alert(status)
+    })
+    .catch((error) => {
+        alert(error.response.status)
       });
 }
 
