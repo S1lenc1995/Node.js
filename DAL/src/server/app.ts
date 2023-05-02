@@ -27,7 +27,7 @@ class App {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-      /*    res.setHeader('Access-Control-Allow-Credentials', true); */
+       /*    res.setHeader('Access-Control-Allow-Credentials', true);  */
       next();
     });
   }
@@ -44,7 +44,6 @@ class App {
 
   public listen() {
     FileDB.registerSchema("posts", newspostSchema);
-    const newspostTable = FileDB.getTable("posts");
     this.app.listen(this.port, () => {
       console.log(`App listening on the port ${this.port}`);
     });

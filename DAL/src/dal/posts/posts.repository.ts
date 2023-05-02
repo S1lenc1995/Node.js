@@ -1,6 +1,14 @@
 import { Service } from "typedi";
 import FileDB, { Table } from "../../database/fileDB";
-import { Post } from "../../types/posts.interface";
+/* import { Post } from "../../types/posts.interface"; */
+
+interface Post {
+    id: number;
+    createDate: Date;
+    title: string;
+    author: string;
+    text: string;
+}
 
 @Service()
 class PostsRepository {
@@ -8,7 +16,7 @@ class PostsRepository {
     
 
 
-    async getAllPosts() {
+    async getAllPosts(): Promise<Post[]> {
         return await this.table.getAll()
     }
     async getById(_id: number) {

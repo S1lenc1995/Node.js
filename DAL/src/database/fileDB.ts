@@ -1,6 +1,7 @@
 const fs = require('fs');
 const fsp = require("fs/promises");
 const path = require("path");
+import { Service } from "typedi";
 
 
 interface Post {
@@ -10,7 +11,7 @@ interface Post {
     author: string;
     text: string;
 }
-
+@Service()
 class FileDB {
     private schemas: Record<string, any>;
     constructor() {

@@ -1,15 +1,21 @@
 import PostsRepository from "../../dal/posts/posts.repository";
 import { Service } from "typedi";
 
+interface Post {
+    id: number;
+    createDate: Date;
+    title: string;
+    author: string;
+    text: string;
+}
+
 @Service()
 class PostsService {
-    private postsRepository
+   
 
-    constructor(postsRepository: PostsRepository){
-        this.postsRepository = postsRepository
-    }
+    constructor(private postsRepository: PostsRepository){}
 
-    async getAllPosts() {
+    async getAllPosts(): Promise<Post[]> {
         return await this.postsRepository.getAllPosts()
     }
     async getById(_id: number) {

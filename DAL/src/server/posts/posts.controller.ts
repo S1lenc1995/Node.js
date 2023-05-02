@@ -17,10 +17,12 @@ interface Post {
 @Service()
 class PostsController {
     public router = express.Router();
+ 
 
     constructor(private postsService: PostsService) {
         this.intializeRoutes();
-    }
+      }
+    
 
     public intializeRoutes() {
         this.router.get('/api', this.getAll);
@@ -32,12 +34,11 @@ class PostsController {
 
     async getAll(request: express.Request, response: express.Response) {
         try {
-            console.log(this.postsService)
-            const params = {
+      /*       const params = {
                 size: request.query.size ? Number(request.query.size) : null,
                 page: request.query.page ? Number(request.query.page) : null,
                 filter: request.query.filter || {},
-              };
+              }; */
               const pagedPosts = await this.postsService.getAllPosts();
               response.send(pagedPosts);
           
