@@ -3,19 +3,12 @@ import * as bodyParser from "body-parser";
 import FileDB, { Table } from "../database/fileDB";
 
 
-const newspostSchema = {
-  id: Number,
-  title: String,
-  text: String,
-  author: String,
-  createDate: Date,
-};
 
 class App {
   public app: express.Application;
   public port: number;
 
-  constructor(controllers: any, port: number) {
+  constructor(controllers, port: number) {
     this.app = express();
     this.port = port;
 
@@ -43,7 +36,6 @@ class App {
   }
 
   public listen() {
-    FileDB.registerSchema("posts", newspostSchema);
     this.app.listen(this.port, () => {
       console.log(`App listening on the port ${this.port}`);
     });

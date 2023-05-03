@@ -2,6 +2,7 @@ import * as express from "express";
 import FileDB, { Table } from "../../database/fileDB";
 import { Service } from "typedi";
 import PostsService from "../../bll/posts/posts.service";
+import Params from "../../types/params.interface";
 const fs = require('fs');
 const fsp = require("fs/promises");
 const path = require("path");
@@ -32,15 +33,16 @@ class PostsController {
         this.router.delete('/api/delete/:id', this.deleteNewsposts);
     }
 
-    async getAll(request: express.Request, response: express.Response) {
+     getAll = async (request: express.Request, response: express.Response) => {
         try {
-      /*       const params = {
+            const params = {
                 size: request.query.size ? Number(request.query.size) : null,
                 page: request.query.page ? Number(request.query.page) : null,
                 filter: request.query.filter || {},
-              }; */
-              const pagedPosts = await this.postsService.getAllPosts();
+              };
+              const pagedPosts = await this.postsService.getAllPosts(params);
               response.send(pagedPosts);
+          
           
         } catch (error) {
             console.error(error);
@@ -49,7 +51,7 @@ class PostsController {
 
     }
 
-    async getById(request: express.Request, response: express.Response) {
+    getById = async (request: express.Request, response: express.Response) => {
         try {
             
             const getById = await this.postsService.getById(Number(request.params.id))
@@ -60,7 +62,7 @@ class PostsController {
 
     }
 
-    async createdNewspost(request: express.Request, response: express.Response) {
+    createdNewspost = async (request: express.Request, response: express.Response) => {
         try {
             const post = request.body
             const createdNewspost = await this.postsService.createdNewspost(post)
@@ -70,7 +72,7 @@ class PostsController {
         }
     }
 
-    async updatedNewsposts(request: express.Request, response: express.Response) {
+    updatedNewsposts = async (request: express.Request, response: express.Response) => {
         try {
             const post = request.body
             const id = Number(request.params.id)
@@ -82,7 +84,7 @@ class PostsController {
 
     }
 
-    async deleteNewsposts(request: express.Request, response: express.Response) {
+    deleteNewsposts = async (request: express.Request, response: express.Response) => {
         try {
             const id = Number(request.params.id)
             const deleteNewsposts = await this.postsService.deleteById(id)

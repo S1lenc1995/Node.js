@@ -1,7 +1,9 @@
 const fs = require('fs');
 const fsp = require("fs/promises");
 const path = require("path");
-import { Service } from "typedi";
+import Params from "../types/params.interface";
+import { PagedPosts } from "../types/posts.interface";
+
 
 
 interface Post {
@@ -11,7 +13,7 @@ interface Post {
     author: string;
     text: string;
 }
-@Service()
+
 class FileDB {
     private schemas: Record<string, any>;
     constructor() {
@@ -42,15 +44,29 @@ export class Table {
         this.pathDB = path.join(__dirname, `${this.nameDB}.json`)
     }
 
-    async getAll(): Promise<Post[]> {
-        const pathDB = path.join(__dirname, `${this.nameDB}.json`)
-        const database = await fsp.readFile(pathDB, "utf-8")
-        return JSON.parse(database)
+    async getAll(params: Params): Promise<PagedPosts> {
+        /* const pathDB = path.join(__dirname, `${this.nameDB}.json`) */
+
+        const database = await fsp.readFile(this.pathDB, "utf-8")
+        let result = JSON.parse(database)
+        if (params.size != null && params.page != null) {
+            result = result.splice(params.page * params.size, params.size);
+        }
+        const total = result.length;
+        return {
+            total,
+            result,
+            size: params.size,
+            page: params.page,
+        }
+
+
     }
 
     async getById(_id: number): Promise<Post[] | null> {
-        const parsedData = await this.getAll()
-        const search = parsedData.filter(({ id }: { id: number }) => id == _id)
+        const database = await fsp.readFile(this.pathDB, "utf-8")
+        let parsedData = JSON.parse(database)
+        const search = parsedData.filter(({ id }) => id === _id)
         if (search.length === 0) {
             return null
         }
@@ -58,13 +74,13 @@ export class Table {
     }
 
     async createdNewspost(newPost: Record<string, any>): Promise<Post | null> {
-        let parsedData = await this.getAll()
+        const database = await fsp.readFile(this.pathDB, "utf-8")
+        let parsedData = JSON.parse(database)
         const idNewPost: number = parsedData.length + 1
         const now: Date = new Date();
         let createDate: Date = new Date(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes());
         newPost.id = idNewPost
         newPost.createDate = createDate
-        /*  let newObj = {...newPost, "id": idNewPost, "createDate": createDate  } */
         const shemaKeys = Object.keys(this.shema).sort()
         const newPostKeys = Object.keys(newPost).sort()
         if (JSON.stringify(shemaKeys) === JSON.stringify(newPostKeys)) {
@@ -77,7 +93,8 @@ export class Table {
     }
 
     async updatedNewsposts(_id: number, { title, text, author }: { title?: string, text?: string, author?: string }): Promise<Post[] | null> {
-        let parsedData = await this.getAll()
+        const database = await fsp.readFile(this.pathDB, "utf-8")
+        let parsedData = JSON.parse(database)
         let flag = false
         const updateData = parsedData.map((obj) => {
             if (_id == obj.id) {
@@ -97,9 +114,10 @@ export class Table {
             return null
         }
     }
-    
+
     async deleteById(_id: number): Promise<number | null> {
-        let parsedData = await this.getAll()
+        const database = await fsp.readFile(this.pathDB, "utf-8")
+        let parsedData = JSON.parse(database)
         const newData = parsedData.filter(({ id }) => id !== _id)
         if (newData.length == parsedData.length) {
             return null

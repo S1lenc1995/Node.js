@@ -1,5 +1,7 @@
 import PostsRepository from "../../dal/posts/posts.repository";
 import { Service } from "typedi";
+import Params from "../../types/params.interface";
+import { PagedPosts } from "../../types/posts.interface";
 
 interface Post {
     id: number;
@@ -15,8 +17,8 @@ class PostsService {
 
     constructor(private postsRepository: PostsRepository){}
 
-    async getAllPosts(): Promise<Post[]> {
-        return await this.postsRepository.getAllPosts()
+    async getAllPosts(params: Params): Promise<PagedPosts> {
+        return await this.postsRepository.getAllPosts(params)
     }
     async getById(_id: number) {
         return await this.postsRepository.getById(_id)

@@ -1,6 +1,9 @@
 import { Service } from "typedi";
 import FileDB, { Table } from "../../database/fileDB";
 /* import { Post } from "../../types/posts.interface"; */
+import { register } from "../../types/function";
+import Params from "../../types/params.interface";
+import { PagedPosts } from "../../types/posts.interface";
 
 interface Post {
     id: number;
@@ -10,14 +13,15 @@ interface Post {
     text: string;
 }
 
+  
+
 @Service()
 class PostsRepository {
-    private table = FileDB.getTable("posts");
+    private table = register()
     
-
-
-    async getAllPosts(): Promise<Post[]> {
-        return await this.table.getAll()
+    async getAllPosts(params: Params): Promise<PagedPosts> {
+       
+        return await this.table.getAll(params)
     }
     async getById(_id: number) {
         return await this.table.getById(_id)

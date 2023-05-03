@@ -29,7 +29,7 @@ export const actionFetchAllPosts = ()=>(dispatch)=>{
     .get('http://localhost:3000/api')
     .then(({data})=>{
        
-        dispatch(actionAllPosts(data))
+        dispatch(actionAllPosts(data.result))
     })
     .catch(() => {
     
