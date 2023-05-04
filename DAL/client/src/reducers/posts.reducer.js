@@ -26,7 +26,7 @@ export const {
 
 export const actionFetchAllPosts = ()=>(dispatch)=>{
     return axios
-    .get('http://localhost:3000/api')
+    .get('http://localhost:3000/api/posts')
     .then(({data})=>{
        
         dispatch(actionAllPosts(data.result))

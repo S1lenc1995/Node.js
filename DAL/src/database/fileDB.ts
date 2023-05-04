@@ -2,17 +2,8 @@ const fs = require('fs');
 const fsp = require("fs/promises");
 const path = require("path");
 import Params from "../types/params.interface";
-import { PagedPosts } from "../types/posts.interface";
+import { PagedPosts, Post } from "../types/posts.interface";
 
-
-
-interface Post {
-    id: number;
-    createDate: Date;
-    title: string;
-    author: string;
-    text: string;
-}
 
 class FileDB {
     private schemas: Record<string, any>;
@@ -45,8 +36,6 @@ export class Table {
     }
 
     async getAll(params: Params): Promise<PagedPosts> {
-        /* const pathDB = path.join(__dirname, `${this.nameDB}.json`) */
-
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let result = JSON.parse(database)
         if (params.size != null && params.page != null) {
@@ -77,10 +66,8 @@ export class Table {
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let parsedData = JSON.parse(database)
         const idNewPost: number = parsedData.length + 1
-        const now: Date = new Date();
-        let createDate: Date = new Date(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes());
         newPost.id = idNewPost
-        newPost.createDate = createDate
+        newPost.createDate = new Date()
         const shemaKeys = Object.keys(this.shema).sort()
         const newPostKeys = Object.keys(newPost).sort()
         if (JSON.stringify(shemaKeys) === JSON.stringify(newPostKeys)) {

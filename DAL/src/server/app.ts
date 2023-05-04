@@ -1,8 +1,5 @@
 import express from "express";
 import * as bodyParser from "body-parser";
-import FileDB, { Table } from "../database/fileDB";
-
-
 
 class App {
   public app: express.Application;
@@ -15,12 +12,11 @@ class App {
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
 
-    // Додайте цей код
     this.app.use(function (req, res, next) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-       /*    res.setHeader('Access-Control-Allow-Credentials', true);  */
+      /*    res.setHeader('Access-Control-Allow-Credentials', true);  */
       next();
     });
   }
@@ -29,8 +25,8 @@ class App {
     this.app.use(bodyParser.json());
   }
 
-  private initializeControllers(controllers: any) {
-    controllers.forEach((controller: any) => {
+  private initializeControllers(controllers) {
+    controllers.forEach((controller) => {
       this.app.use("/", controller.router);
     });
   }

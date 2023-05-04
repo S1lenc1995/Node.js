@@ -1,32 +1,17 @@
 import * as express from "express";
-import FileDB, { Table } from "../../database/fileDB";
 import { Service } from "typedi";
 import PostsService from "../../bll/posts/posts.service";
-import Params from "../../types/params.interface";
-const fs = require('fs');
-const fsp = require("fs/promises");
-const path = require("path");
-
-interface Post {
-    id: number;
-    createDate: Date;
-    title: string;
-    author: string;
-    text: string;
-}
 
 @Service()
 class PostsController {
     public router = express.Router();
  
-
     constructor(private postsService: PostsService) {
         this.intializeRoutes();
       }
     
-
     public intializeRoutes() {
-        this.router.get('/api', this.getAll);
+        this.router.get('/api/posts', this.getAll);
         this.router.get('/api/post/:id', this.getById);
         this.router.post('/api/createNewPost', this.createdNewspost);
         this.router.put('/api/editpost/:id', this.updatedNewsposts);
@@ -35,6 +20,7 @@ class PostsController {
 
      getAll = async (request: express.Request, response: express.Response) => {
         try {
+           // http://localhost:3000/api/posts?page=2&size=2 для перевірки пагінації, на фронт її не виносив
             const params = {
                 size: request.query.size ? Number(request.query.size) : null,
                 page: request.query.page ? Number(request.query.page) : null,
@@ -88,7 +74,7 @@ class PostsController {
         try {
             const id = Number(request.params.id)
             const deleteNewsposts = await this.postsService.deleteById(id)
-            deleteNewsposts === null ? response.sendStatus(404) : response.send(deleteNewsposts)
+            deleteNewsposts === null ? response.sendStatus(404) : response.send(String(deleteNewsposts))
         } catch (error) {
             console.error(error);
             response.sendStatus(500);

@@ -1,19 +1,9 @@
 import { Service } from "typedi";
-import FileDB, { Table } from "../../database/fileDB";
-/* import { Post } from "../../types/posts.interface"; */
-import { register } from "../../types/function";
+import { register } from "../../registerShema/postsRegisterShema";
 import Params from "../../types/params.interface";
 import { PagedPosts } from "../../types/posts.interface";
 
-interface Post {
-    id: number;
-    createDate: Date;
-    title: string;
-    author: string;
-    text: string;
-}
 
-  
 
 @Service()
 class PostsRepository {
