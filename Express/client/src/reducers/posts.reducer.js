@@ -28,7 +28,7 @@ export const actionFetchAllPosts = ()=>(dispatch)=>{
     return axios
     .get('http://localhost:3000/api')
     .then(({data})=>{
-       
+       console.log(data, '1111111111')
         dispatch(actionAllPosts(data))
     })
     .catch(() => {

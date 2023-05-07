@@ -26,6 +26,7 @@ class FileDB {
         if (!fs.existsSync(pathDB)) {
             fs.writeFileSync(pathDB, JSON.stringify([]))
         }
+        console.log(this.schemas, 'aaaa')
         return new Table(name, this.schemas.posts);
     }
 }
@@ -47,16 +48,16 @@ export class Table {
         return JSON.parse(database)
     }
 
-    async getById(_id: number): Promise<Post[]> {
+    async getById(_id: number): Promise<Post[] | null> {
         const parsedData = await this.getAll()
         const search = parsedData.filter(({ id }: { id: number }) => id == _id)
         if (search.length === 0) {
-            throw new Error("The post was not found for the given id")
+            return null
         }
         return search
     }
 
-    async createdNewspost(newPost: Record<string, any>): Promise<Post> {
+    async createdNewspost(newPost: Record<string, any>): Promise<Post | null> {
         let parsedData = await this.getAll()
         const idNewPost: number = parsedData.length + 1
         const now: Date = new Date();
@@ -71,11 +72,11 @@ export class Table {
             await fsp.writeFile(this.pathDB, JSON.stringify(parsedData))
             return newPost as Post
         } else {
-            throw new Error("Enter corect post")
+            return null
         }
     }
 
-    async updatedNewsposts(_id: number, { title, text, author }: { title?: string, text?: string, author?: string }): Promise<Post[]> {
+    async updatedNewsposts(_id: number, { title, text, author }: { title?: string, text?: string, author?: string }): Promise<Post[] | null> {
         let parsedData = await this.getAll()
         let flag = false
         const updateData = parsedData.map((obj) => {
@@ -93,15 +94,15 @@ export class Table {
             await fsp.writeFile(this.pathDB, JSON.stringify(updateData))
             return this.getById(_id)
         } else {
-            throw new Error("The post was not found for the given id")
+            return null
         }
     }
     
-    async deleteById(_id: number): Promise<number> {
+    async deleteById(_id: number): Promise<number | null> {
         let parsedData = await this.getAll()
         const newData = parsedData.filter(({ id }) => id !== _id)
         if (newData.length == parsedData.length) {
-            throw new Error("The post was not found for the given id")
+            return null
         }
         await fsp.writeFile(this.pathDB, JSON.stringify(newData))
         return _id
