@@ -79,16 +79,18 @@ export class Table {
         }
     }
 
-    async updatedNewsposts(_id: number, { title, text, author }: { title?: string, text?: string, author?: string }): Promise<Post[] | null> {
+    async updatedNewsposts(_id: number, edditObj): Promise<Post[] | null> {
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let parsedData = JSON.parse(database)
         let flag = false
         const updateData = parsedData.map((obj) => {
             if (_id == obj.id) {
+                for (const key in obj) {
+                    if (obj.hasOwnProperty(key) && edditObj.hasOwnProperty(key)) {
+                        obj[key] = edditObj[key];
+                    }
+                }
                 flag = true
-                title ? obj.title = title : null;
-                text ? obj.text = text : null
-                author ? obj.author = author : null
                 return obj
             } else {
                 return obj

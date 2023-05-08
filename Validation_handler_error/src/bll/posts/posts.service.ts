@@ -20,8 +20,8 @@ class PostsService {
         return await this.postsRepository.createdNewspost(newPost)
     }
 
-    async updatedNewsposts(_id: number, { title, text, author }: { title?: string, text?: string, author?: string }) {
-        return await this.postsRepository.updatedNewsposts(_id, { title, text, author })
+    async updatedNewsposts(_id: number, post) {
+        return await this.postsRepository.updatedNewsposts(_id, post)
     }
 
     async deleteById(_id: number): Promise<number | null> {

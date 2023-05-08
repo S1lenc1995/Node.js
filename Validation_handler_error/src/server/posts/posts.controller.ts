@@ -4,11 +4,14 @@ import PostsService from "../../bll/posts/posts.service";
 import addFormats from "ajv-formats";
 import Ajv from "ajv"
 import postsSchema from "./posts.schema";
+import { AppError, ValidationError } from "../utils/customErrors";
+import logger from "../utils/logger"
 
 @Service()
 class PostsController {
     public router = express.Router();
     private postValidator;
+
 
 
     constructor(private postsService: PostsService) {
@@ -50,7 +53,6 @@ class PostsController {
 
     getById = async (request: express.Request, response: express.Response) => {
         try {
-
             const getById = await this.postsService.getById(Number(request.params.id))
             getById === null ? response.sendStatus(404) : response.send(getById)
         } catch (error) {
@@ -59,33 +61,89 @@ class PostsController {
 
     }
 
-    createdNewspost = async (request: express.Request, response: express.Response) => {
-        try {
+         createdNewspost = async (request: express.Request, response: express.Response) => {
             const post = request.body
+            logger.info(post)
             const valid = this.postValidator(post)
-            console.log(post, 'aaaaa')
             if (!valid) {
-                console.log("----")
-                return response.send(this.postValidator.errors)
-             /*    throw new ValidationError({
-                  message: this.postValidator.errors.map((e) => e.message),
-                }); */
+                logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
+                response.status(400).json({
+                    message: this.postValidator.errors.map((e) => e.message),
+                    errors: this.postValidator.errors 
+                })
+                return
             }
-            const createdNewspost = await this.postsService.createdNewspost(post)
-            createdNewspost === null ? response.sendStatus(404) : response.send(createdNewspost)
-        } catch (error) {
-            response.sendStatus(500);
-        }
-    }
+            try {
+                const createdNewspost = await this.postsService.createdNewspost(post)
+                response.send(createdNewspost)
+            } catch (error) {
+                logger.error({ message: error.message, stack: error.stack })
+                if (process.env.NODE_ENV === 'production') {
+                  response.status(500).json({
+                    message: error.message
+                  })
+                } else {
+                  response.status(500).json({
+                    message: error.message,
+                    stack: error.stack
+                  })
+                }
+                return
+            }
+        } 
+
+            
+        // Спосіб яким ми робили на уроці, не працює, падає нода писав Вам в телеграм
+
+
+       /*  createdNewspost = async (request: express.Request, response: express.Response) => {
+            const post = request.body
+            logger.info(post)
+            const valid = this.postValidator(post)
+            if (!valid) {
+                throw new ValidationError({
+                    message: this.postValidator.errors,
+                });
+            }
+            try {
+                const createdPost = await this.postsService.createdNewspost(post);
+                response.send(createdPost);
+            } catch (e) {
+                throw new AppError({ message: e.message });
+            }
+        }; */
+
 
     updatedNewsposts = async (request: express.Request, response: express.Response) => {
+        const post = request.body
+        
+        const id = Number(request.params.id)
+        logger.info(post)
+        const valid = this.postValidator(post)
+        if (!valid) {
+            logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
+            response.status(400).json({
+                message: this.postValidator.errors.map((e) => e.message),
+                errors: this.postValidator.errors 
+            })
+            return
+        }
         try {
-            const post = request.body
-            const id = Number(request.params.id)
             const updatedNewsposts = await this.postsService.updatedNewsposts(id, post)
-            updatedNewsposts === null ? response.sendStatus(404) : response.send(updatedNewsposts)
+            response.send(updatedNewsposts)
         } catch (error) {
-            response.sendStatus(500);
+            logger.error({ message: error.message, stack: error.stack })
+            if (process.env.NODE_ENV === 'production') {
+              response.status(500).json({
+                message: error.message
+              })
+            } else {
+              response.status(500).json({
+                message: error.message,
+                stack: error.stack
+              })
+            }
+            return
         }
 
     }

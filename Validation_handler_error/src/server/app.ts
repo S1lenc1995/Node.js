@@ -1,34 +1,41 @@
 import express from "express";
 import * as bodyParser from "body-parser";
+import errorHandle from "./utils/errorHandle";
+import { logRequest } from "./utils/logger";
+
+
+
 
 class App {
   public app: express.Application;
   public port: number;
 
-  constructor(controllers, port: number) {
+  constructor(controllers, port) {
     this.app = express();
     this.port = port;
 
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
-
-    this.app.use(function (req, res, next) {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-      /*    res.setHeader('Access-Control-Allow-Credentials', true);  */
-      next();
-    });
+    this.initializeErrorHandle();
   }
 
   private initializeMiddlewares() {
-    this.app.use(bodyParser.json());
+    this.app.use(express.static("public"));
+/*     this.app.use(bodyFormDataMiddleware);
+    this.app.use(fieldsToBody); */
+    this.app.use(express.json());
+/*     this.app.use(formidable()); */
+    this.app.use(logRequest);
   }
 
   private initializeControllers(controllers) {
     controllers.forEach((controller) => {
       this.app.use("/", controller.router);
     });
+  }
+
+  private initializeErrorHandle() {
+    this.app.use(errorHandle);
   }
 
   public listen() {
