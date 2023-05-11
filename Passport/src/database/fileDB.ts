@@ -3,6 +3,8 @@ const fsp = require("fs/promises");
 const path = require("path");
 import Params from "../types/params.interface";
 import { PagedPosts, Post } from "../types/posts.interface";
+import { CreatePost } from "../types/posts.interface";
+import { NewUser } from "../types/users.interface";
 
 
 class FileDB {
@@ -35,20 +37,10 @@ export class Table {
         this.pathDB = path.join(__dirname, `${this.nameDB}.json`)
     }
 
-    async getAll(params: Params): Promise<PagedPosts> {
+    async getAll(): Promise<Post[] | null> {
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let result = JSON.parse(database)
-        if (params.size != null && params.page != null) {
-            result = result.splice(params.page * params.size, params.size);
-        }
-        const total = result.length;
-        return {
-            total,
-            result,
-            size: params.size,
-            page: params.page,
-        }
-
+        return result
 
     }
 
@@ -62,7 +54,7 @@ export class Table {
         return search
     }
 
-    async createdNewspost(newPost: Record<string, any>): Promise<Post | null> {
+    async createdNewspost(newPost: Post | NewUser): Promise<Post | NewUser | null> {
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let parsedData = JSON.parse(database)
         const idNewPost: number = parsedData.length + 1

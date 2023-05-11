@@ -1,7 +1,7 @@
 import PostsRepository from "../../dal/posts/posts.repository";
 import { Service } from "typedi";
 import Params from "../../types/params.interface";
-import { PagedPosts } from "../../types/posts.interface";
+import { PagedPosts, Post } from "../../types/posts.interface";
 
 
 @Service()
@@ -16,7 +16,7 @@ class PostsService {
         return await this.postsRepository.getById(_id)
     }
 
-    async createdNewspost(newPost: Record<string, any>) {
+    async createdNewspost(newPost:  Post) {
         return await this.postsRepository.createdNewspost(newPost)
     }
 

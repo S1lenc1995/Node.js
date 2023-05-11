@@ -10,8 +10,9 @@ const newspostSchema = {
     isPrivate: Boolean,
   };
 
-export function register (){
+export function postsRegister (){
     FileDB.registerSchema('posts',newspostSchema);
     const table = FileDB.getTable("posts");
     return table
 } 
+

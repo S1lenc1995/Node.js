@@ -3,7 +3,7 @@ export interface Post {
     content: string;
     title: string;
     id: number;
-    date: Date;
+    createDate: Date;
 }
 
 export interface CreatePost {

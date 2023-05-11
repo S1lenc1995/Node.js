@@ -1,22 +1,31 @@
 import { Service } from "typedi";
-import { register } from "../../registerShema/postsRegisterShema";
+import { postsRegister } from "../../registerShema/postsRegisterShema";
 import Params from "../../types/params.interface";
-import { PagedPosts } from "../../types/posts.interface";
+import { PagedPosts, Post } from "../../types/posts.interface";
 
 
 
 @Service()
 class PostsRepository {
-    private table = register()
-    
+    private table = postsRegister()
     async getAllPosts(params: Params): Promise<PagedPosts> {
-        return await this.table.getAll(params)
+        let result = await this.table.getAll()
+        if (params.size != null && params.page != null) {
+            result = result.splice(params.page * params.size, params.size);
+        }
+        const total = result.length;
+        return {
+            total,
+            result,
+            size: params.size,
+            page: params.page,
+        }
     }
     async getById(_id: number) {
         return await this.table.getById(_id)
     }
 
-    async createdNewspost(newPost: Record<string, any>) {
+    async createdNewspost(newPost: Post) {
         return await this.table.createdNewspost(newPost)
     }
 

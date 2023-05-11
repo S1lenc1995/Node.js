@@ -1,26 +1,17 @@
 import { User } from "../../types/users.interface";
 import Params from "../../types/params.interface";
 import { Service } from "typedi";
+import { usersRegister } from "../../registerShema/usersRegisterShema";
+import { NewUser } from "../../types/users.interface";
 
 @Service()
 class UsersRepository {
-  private users: User[] = [
-    {
-      id: 0,
-      email: "bob@gmail.com",
-      password: "$2a$10$fMwE1jZNQCpgAEZ7tPpv3ezdLd/Pa2UF2H3fjWbDeLxJJNbVHfdey",
-    },
-  ];
+  private table = usersRegister()
 
-  getByEmail = (email: string) => {
-    return this.users.find((user) => user.email === email);
-  };
+  async createdNewspost(newPost: NewUser) {
+    return await this.table.createdNewspost(newPost)
+}
 
-  createAUser = (user: User) => {
-    user.id = this.users.length + 1;
-    this.users.push(user);
-    return user;
-  };
 }
 
 export default UsersRepository;
