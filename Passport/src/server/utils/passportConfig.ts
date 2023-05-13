@@ -4,17 +4,18 @@ import UsersService from "../../bll/users/users.service";
 import Container from "typedi";
 import * as bcrypt from "bcryptjs";
 
-export default function init() {
+ export default function init() {
   passport.use(
     new LocalStrategy(
       {
         usernameField: "email",
         passwordField: "password",
       },
-      (email, password, done) => {
+      async (email, password, done) =>  {
         const userService = Container.get(UsersService);
-        const user = userService.getUserByEmail(email);
-        if (!user) {
+        const user = await userService.getByEmail(email);
+        console.log(user, '55556')
+         if (!user) {
           return done(
             {
               errors: { "email or password": "is invalid" },
@@ -32,8 +33,9 @@ export default function init() {
             );
           }
           return done(null, user);
-        });
-      }
+        }); 
+      } 
     )
-  );
+  ); 
 }
+ 

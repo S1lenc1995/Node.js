@@ -8,9 +8,14 @@ import { NewUser } from "../../types/users.interface";
 class UsersService {
   constructor(private usersRepository: UsersRepository) {}
 
-  async createdNewspost(newPost: NewUser) {
-    return await this.usersRepository.createdNewspost(newPost)
+  async createdNewUser(newUser: Record<string, any>) {
+    return await this.usersRepository.createdNewUser(newUser)
 }
+
+async getByEmail(email: string) {
+  return await this.usersRepository.getByEmail(email)
+}
+
 }
 
 export default UsersService;

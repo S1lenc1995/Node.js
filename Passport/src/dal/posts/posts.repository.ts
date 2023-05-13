@@ -22,11 +22,11 @@ class PostsRepository {
         }
     }
     async getById(_id: number) {
-        return await this.table.getById(_id)
+        return await this.table.searchByField(_id)
     }
 
     async createdNewspost(newPost: Post) {
-        return await this.table.createdNewspost(newPost)
+        return await this.table.creationData(newPost)
     }
 
     async updatedNewsposts(_id: number, post) {

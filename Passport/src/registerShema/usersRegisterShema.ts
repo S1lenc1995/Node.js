@@ -4,7 +4,8 @@ const usersSchema = {
     id: Number,
     createDate: Date,
     email: String,
-    password: String
+    password: String,
+    confirmPassword: String
   };
 
 export function usersRegister (){

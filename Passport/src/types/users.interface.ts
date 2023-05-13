@@ -12,7 +12,7 @@ export interface RequestUser {
 
 export interface NewUser {
   email: String,
-  password: String,
   id?: number,
   createDate?: Date;
+  password: String, 
 }

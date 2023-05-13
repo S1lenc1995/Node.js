@@ -17,12 +17,13 @@ class FileDB {
     }
 
     getTable(name: string): Table {
-        /*    const schema = this.schemas[name]; */
+        const schema = this.schemas[name]; 
         let pathDB = path.join(__dirname, `${name}.json`)
         if (!fs.existsSync(pathDB)) {
             fs.writeFileSync(pathDB, JSON.stringify([]))
         }
-        return new Table(name, this.schemas.posts);
+        console.log(this.schemas, '5555')
+        return new Table(name, schema);
     }
 }
 
@@ -44,17 +45,27 @@ export class Table {
 
     }
 
-    async getById(_id: number): Promise<Post[] | null> {
+    async searchByField(param: number | string): Promise<Record<string, any> | null> {
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let parsedData = JSON.parse(database)
-        const search = parsedData.filter(({ id }) => id === _id)
+        let search = []
+        console.log(param, '111111')
+        if(typeof param === 'number'){
+             search = parsedData.filter(({ id }) => id === param)
+        }
+        if(typeof param === 'string'){
+            console.log(param, '222222')
+            search = parsedData.filter(({ email }) => email === param)
+       }
         if (search.length === 0) {
             return null
         }
-        return search
+        console.log(search, '333333')
+        return search[0]
     }
 
-    async createdNewspost(newPost: Post | NewUser): Promise<Post | NewUser | null> {
+    async creationData(newPost: Record<string, any>): Promise<Record<string, any> | null> {
+        console.log(newPost, '3333')
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let parsedData = JSON.parse(database)
         const idNewPost: number = parsedData.length + 1
@@ -62,6 +73,7 @@ export class Table {
         newPost.createDate = new Date()
         const shemaKeys = Object.keys(this.shema).sort()
         const newPostKeys = Object.keys(newPost).sort()
+        console.log(shemaKeys, newPostKeys, '4444444')
         if (JSON.stringify(shemaKeys) === JSON.stringify(newPostKeys)) {
             parsedData.push(newPost as Post);
             await fsp.writeFile(this.pathDB, JSON.stringify(parsedData))
@@ -71,7 +83,7 @@ export class Table {
         }
     }
 
-    async updatedNewsposts(_id: number, edditObj): Promise<Post[] | null> {
+    async updatedNewsposts(_id: number, edditObj): Promise<Record<string, any> | null> {
         const database = await fsp.readFile(this.pathDB, "utf-8")
         let parsedData = JSON.parse(database)
         let flag = false
@@ -90,7 +102,7 @@ export class Table {
         })
         if (flag) {
             await fsp.writeFile(this.pathDB, JSON.stringify(updateData))
-            return this.getById(_id)
+            return this.searchByField(_id)
         } else {
             return null
         }

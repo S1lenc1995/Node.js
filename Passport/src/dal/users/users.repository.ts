@@ -8,8 +8,12 @@ import { NewUser } from "../../types/users.interface";
 class UsersRepository {
   private table = usersRegister()
 
-  async createdNewspost(newPost: NewUser) {
-    return await this.table.createdNewspost(newPost)
+  async createdNewUser(newPost: Record<string, any>) {
+    return await this.table.creationData(newPost)
+}
+
+async getByEmail (email: string) {
+  return await this.table.searchByField(email)
 }
 
 }
