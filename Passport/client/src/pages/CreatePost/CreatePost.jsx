@@ -5,15 +5,19 @@ import { TextField, Select, MenuItem, FormControl, InputLabel, FormControlLabel,
 import { useSelector, useDispatch } from 'react-redux';
 import { actionFetchCreateNewPost } from "../../reducers";
 import ButtonToMainPage from "../../components/ButtonToMainPage";
+import { selectorToken } from "../../selectors";
+
 
 import "./CreatePost.scss"
 
 const CreatePost = () => {
     const dispatch = useDispatch()
 
-
+    const token = useSelector(selectorToken)
  
     return(
+      <>
+      {token && 
         <section className="container">
          <ButtonToMainPage/>
         <div className="container__form">
@@ -88,6 +92,8 @@ const CreatePost = () => {
       </Formik>
       </div>
       </section>
+      }
+      </>
     )
 }
 

@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectorCurentPost } from '../../selectors';
 import { actionFetchCurentPost, actionFetchUpdatePost,actionFetchAllPosts } from '../../reducers';
 import { TextField, Select, MenuItem, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
+import { selectorToken } from "../../selectors";
 
 
 
@@ -15,17 +16,29 @@ const EditPost = () => {
     const navigate = useNavigate();
     let curentPost = useSelector(selectorCurentPost)
     console.log(id, 'aaaaa')
+    
+    const token = useSelector(selectorToken)
+      
+
+
 
     useEffect(()=>{
         dispatch(actionFetchCurentPost(id))
     },[])
-    console.log(curentPost[0], '2222222222')
+   
+    if (curentPost == null) {
+      // Поки дані не завантажені, повертаємо пусту розмітку або спіннер
+      return null;
+    }
+    const {title, content, author, genre, isPrivate} = curentPost
     
-    return(
+    return( 
+      <>
+      {token && 
        
         <section className="container">
         <div className="container__form"> 
-        {curentPost?.map(({title, content, author, genre, isPrivate})=>(
+  
             <Formik 
             initialValues={{ title: title, content: content, author: author, genre: genre, isPrivate: isPrivate}}  
             onSubmit={ async (values)  => {
@@ -91,9 +104,11 @@ const EditPost = () => {
             </Form>
             )}
             </Formik>
-            ))}
+       
       </div>
       </section>
+    }
+    </>
     )
 }
 

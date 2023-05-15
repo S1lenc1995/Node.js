@@ -18,7 +18,7 @@ import authSchema from "./auth.schema";
 @Service()
 class AuthController {
   private privateKey = "QWE123";
-  public path = "/auth";
+/*   public path = "/auth"; */
   public router = express.Router();
   private postValidator;
 
@@ -34,19 +34,10 @@ class AuthController {
 }
 
   public initializeRoutes() {
-    this.router.get("/privatetest", verifyToken, this.privateTest);
-/*     this.router.post("/jwt/login", this.loginJWT); */
     this.router.post("/auth/register", this.registerJWT);
     this.router.post("/auth/login", auth.optional, this.loginPass);
-    this.router.get("/pass/current", auth.required, this.privateTest);
   }
 
-  privateTest = (request: express.Request, response: express.Response) => {
-    response.send({
-      message: "Hi from private route",
-      user: request["auth"],
-    });
-  };
 
   loginPass = async (
     request: express.Request,
@@ -58,12 +49,11 @@ class AuthController {
       { session: false },
       (err, passportUser, info) => {
         if (err) {
-          return next(err);
+          return response.status(400).send(err);
         }
 
         if (passportUser) {
           const user = passportUser;
-          console.log(user, '111aaaaaaaa')
           user.token = jwt.sign(
             { user_id: user.id, email: user.email },
             "secret",
@@ -71,9 +61,7 @@ class AuthController {
               expiresIn: "12h",
             }
           );
-
           user.password = "";
-          console.log(user, 'aaaaaaaa')
           return response.json({ user });
         }
 
@@ -82,24 +70,7 @@ class AuthController {
     )(request, response, next);
   };
 
- /*  loginJWT = async (request: express.Request, response: express.Response) => {
-    const { email, password } = request.body;
 
-    const user = await this.usersService.getUserByEmai(email);
-
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const token = jwt.sign({ user_id: user.id, email }, this.privateKey, {
-        expiresIn: "2h",
-      });
-
-      user.password = "";
-      user.token = token;
-      response.cookie("token", token, { maxAge: 900000, httpOnly: true });
-      return response.status(200).json(user);
-    }
-    response.status(400).send("Invalid Credentials");
-  };
- */
   registerJWT = async (
     request: express.Request,
     response: express.Response
@@ -114,29 +85,30 @@ class AuthController {
       return
     }
     const { email, password, confirmPassword } = request.body;
-/*     const oldUser = this.usersService.getUserByEmail(email);
-    if (oldUser) {
+    const oldUser = await this.usersService.getByEmail(email);
+    if (oldUser !== null  ) {
       return response.status(409).send("User Already Exist. Please Login");
-    } */
+    } 
+    if (password !== confirmPassword) {
+      return response.status(408).send("Password and Confirm password must be the same");
+    } 
 
     const encryptedPassword = await bcrypt.hash(password, 10);
     const newUser = {
       email: email,
       password: encryptedPassword,
-      confirmPassword: confirmPassword
     }
-   
+  
+    let user = await this.usersService.createdNewUser(newUser);
 
-    const user = await this.usersService.createdNewUser(newUser);
-
-   /*  const token = jwt.sign({ user_id: user.id, email }, this.privateKey, {
+    const token = jwt.sign({ user_id: user.id, email }, this.privateKey, {
       expiresIn: "2h",
-    }); */
+    }); 
 
-/*     user.password = "";
-    user.token = token; */
+    user.password = "";
+    user.token = token; 
 
-    response.status(200)/* .json(user); */
+    response.status(200).send(user); 
   };
 }
 

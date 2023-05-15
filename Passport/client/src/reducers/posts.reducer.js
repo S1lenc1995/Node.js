@@ -1,9 +1,10 @@
 import {createSlice, current} from "@reduxjs/toolkit";
 import axios from "axios";
+import setAuthToken from "../helpers/setAuthToken";
 
 const initialState = {
     allPosts:[],
-    currentPost: [],
+    currentPost: null,
 }
 
 const postsSlice = createSlice({
@@ -14,7 +15,7 @@ const postsSlice = createSlice({
             state.allPosts = [...payload]
         },
         actionCurentPost:(state, {payload})=>{
-            state.currentPost = [...payload]
+            state.currentPost = payload
         }
     }
 })
@@ -25,30 +26,38 @@ export const {
 } = postsSlice.actions
 
 export const actionFetchAllPosts = ()=>(dispatch)=>{
+    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
+    setAuthToken(token);
     return axios
     .get('http://localhost:3000/api/posts')
-    .then(({data})=>{
-       
+    .then(({data, status})=>{
+        alert(status)
         dispatch(actionAllPosts(data.result))
     })
-    .catch(() => {
-    
+    .catch((error) => {
+        alert(error) 
       });
 }
 
 export const actionFetchCurentPost = (id)=>(dispatch)=>{
+    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
+    setAuthToken(token);
     return axios
     .get(`http://localhost:3000/api/post/${id}`)
     .then(({data, status})=>{
+        console.log(data, 'main')
         alert(status)
         dispatch(actionCurentPost(data))
     })
     .catch((error) => {
-        alert(error.response.status)
+        console.log(error)
+        alert(error) 
       });
 }
 
-export const actionFetchCreateNewPost = (value)=>(dispatch)=>{            
+export const actionFetchCreateNewPost = (value)=>(dispatch)=>{ 
+    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
+    setAuthToken(token);           
     return axios   
     .post(`http://localhost:3000/api/createNewPost`, (value))
     .then(({data, status})=>{
@@ -60,6 +69,8 @@ export const actionFetchCreateNewPost = (value)=>(dispatch)=>{
 }
 
 export const actionFetchUpdatePost = (id, value)=>(dispatch)=>{
+    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
+    setAuthToken(token);
     return axios
     .put(`http://localhost:3000/api/editpost/${id}`, value)
     .then(({data, status})=>{
@@ -72,13 +83,15 @@ export const actionFetchUpdatePost = (id, value)=>(dispatch)=>{
 }
 
 export const actionFetchDeletePost = (id)=>(dispatch)=>{
+    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
+    setAuthToken(token);
     return axios
     .delete(`http://localhost:3000/api/delete/${id}`)
     .then(({data, status})=>{
         alert(status)
     })
     .catch((error) => {
-        alert(error.response.status)
+        alert(error) 
       });
 }
 

@@ -4,8 +4,11 @@ import postsReducer,{
     actionFetchCreateNewPost,
     actionFetchUpdatePost,
     actionFetchDeletePost,
-    
-} from "./posts.reducer";
+}  from "./posts.reducer";
+import usersReducer,{
+    actionFetchRegistrationUser,
+    actionFetchLoginUser
+} from "./users.reducer"
 
 export{
     postsReducer,
@@ -14,5 +17,9 @@ export{
     actionFetchCreateNewPost,
     actionFetchUpdatePost,
     actionFetchDeletePost,
+
+    usersReducer,
+    actionFetchRegistrationUser,
+    actionFetchLoginUser,
     
 }

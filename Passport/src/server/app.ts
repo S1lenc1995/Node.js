@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import errorHandle from "./utils/errorHandle";
 import { logRequest } from "./utils/logger";
 import passportConfig from "./utils/passportConfig";
+import cors from 'cors';
 
 
 
@@ -19,7 +20,19 @@ class App {
     passportConfig();
     this.initializeControllers(controllers);
     this.initializeErrorHandle();
+
+    this.app.use(cors());
+
+/*     this.app.use(function (req, res, next) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Credentials', true);  
+      next();
+    }); */
   }
+
+  
 
   private initializeMiddlewares() {
     this.app.use(express.static("public"));

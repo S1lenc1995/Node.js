@@ -5,7 +5,6 @@ const usersSchema = {
     createDate: Date,
     email: String,
     password: String,
-    confirmPassword: String
   };
 
 export function usersRegister (){

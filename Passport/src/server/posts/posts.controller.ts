@@ -27,11 +27,22 @@ class PostsController {
 
 
     public intializeRoutes() {
-        this.router.get('/api/posts', this.getAll);
-        this.router.get('/api/post/:id', this.getById);
-        this.router.post('/api/createNewPost', this.createdNewspost);
-        this.router.put('/api/editpost/:id', this.updatedNewsposts);
-        this.router.delete('/api/delete/:id', this.deleteNewsposts);
+        const requireAuthMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+            const token = req.headers.authorization;
+            if (!token) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
+
+            // Перевірити токен тут і зберегти ідентифікатор користувача у властивості `req.user`, якщо токен є дійсним
+            // Наприклад, викликати функцію перевірки токену з бібліотеки jsonwebtoken і зберегти розкодовані дані у `req.user`
+
+            next();
+        };
+        this.router.get('/api/posts', requireAuthMiddleware, this.getAll);
+        this.router.get('/api/post/:id', requireAuthMiddleware, this.getById);
+        this.router.post('/api/createNewPost', requireAuthMiddleware, this.createdNewspost);
+        this.router.put('/api/editpost/:id', requireAuthMiddleware, this.updatedNewsposts);
+        this.router.delete('/api/delete/:id', requireAuthMiddleware, this.deleteNewsposts);
     }
 
     getAll = async (request: express.Request, response: express.Response) => {
@@ -56,96 +67,68 @@ class PostsController {
             const getById = await this.postsService.getById(Number(request.params.id))
             getById === null ? response.sendStatus(404) : response.send(getById)
         } catch (error) {
-            response.sendStatus(500);
+            response.sendStatus(500).send(error);
         }
 
     }
 
-         createdNewspost = async (request: express.Request, response: express.Response) => {
+    createdNewspost = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+        try {
             const post = request.body
             logger.info(post)
             const valid = this.postValidator(post)
             if (!valid) {
-                logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
-                response.status(400).json({
+                logger.warn({ ValidationError: this.postValidator.errors.map((e) => e.message) })
+                throw new ValidationError({
                     message: this.postValidator.errors.map((e) => e.message),
-                    errors: this.postValidator.errors 
-                })
-                return
+                });
             }
             try {
                 const createdNewspost = await this.postsService.createdNewspost(post)
                 response.send(createdNewspost)
             } catch (error) {
                 logger.error({ message: error.message, stack: error.stack })
-                if (process.env.NODE_ENV === 'production') {
-                  response.status(500).json({
-                    message: error.message
-                  })
+                if (process.env.NODE_ENV === 'development') {
+                    throw error; // помилка в режимі розробки
                 } else {
-                  response.status(500).json({
-                    message: error.message,
-                    stack: error.stack
-                  })
+                    throw new AppError({ message: error.message }); // повернути тільки повідомлення і код помилки в режимі продакшн
                 }
-                return
             }
-        } 
+        } catch (error) {
+            next(error)
+        }
+    }
 
-            
-        // Спосіб яким ми робили на уроці, не працює, падає нода писав Вам в телеграм
 
 
-       /*  createdNewspost = async (request: express.Request, response: express.Response) => {
+
+
+    updatedNewsposts = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+        try {
             const post = request.body
+            const id = Number(request.params.id)
             logger.info(post)
             const valid = this.postValidator(post)
             if (!valid) {
+                logger.warn({ ValidationError: this.postValidator.errors.map((e) => e.message) })
                 throw new ValidationError({
-                    message: this.postValidator.errors,
+                    message: this.postValidator.errors.map((e) => e.message),
                 });
             }
             try {
-                const createdPost = await this.postsService.createdNewspost(post);
-                response.send(createdPost);
-            } catch (e) {
-                throw new AppError({ message: e.message });
-            }
-        }; */
-
-
-    updatedNewsposts = async (request: express.Request, response: express.Response) => {
-        const post = request.body
-        
-        const id = Number(request.params.id)
-        logger.info(post)
-        const valid = this.postValidator(post)
-        if (!valid) {
-            logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
-            response.status(400).json({
-                message: this.postValidator.errors.map((e) => e.message),
-                errors: this.postValidator.errors 
-            })
-            return
-        }
-        try {
-            const updatedNewsposts = await this.postsService.updatedNewsposts(id, post)
-            response.send(updatedNewsposts)
-        } catch (error) {
-            logger.error({ message: error.message, stack: error.stack })
-            if (process.env.NODE_ENV === 'production') {
-              response.status(500).json({
-                message: error.message
-              })
+                const updatedNewsposts = await this.postsService.updatedNewsposts(id, post)
+                response.send(updatedNewsposts)
+            } catch (error) {
+                logger.error({ message: error.message, stack: error.stack })
+            if (process.env.NODE_ENV === 'development') {
+                throw error; 
             } else {
-              response.status(500).json({
-                message: error.message,
-                stack: error.stack
-              })
+                throw new AppError({ message: error.message }); 
             }
-            return
+            }
+        } catch (error) {
+            next(error)
         }
-
     }
 
     deleteNewsposts = async (request: express.Request, response: express.Response) => {

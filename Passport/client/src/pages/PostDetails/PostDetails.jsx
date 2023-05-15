@@ -6,20 +6,25 @@ import { actionFetchCurentPost, actionFetchDeletePost, actionFetchAllPosts } fro
 import { selectorCurentPost } from '../../selectors';
 import PostCard from '../../components/PostCard/PostCard';
 import { Link } from "react-router-dom";
+import { selectorToken } from "../../selectors";
 
 const PostDetails = () => {
     let {id} = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let curentPost = useSelector(selectorCurentPost)
-    console.log(id, 'aaaaa')
+    const token = useSelector(selectorToken)
 
     useEffect(()=>{
         dispatch(actionFetchCurentPost(id))
     },[])
+    if(!token){
+        return null
+    }
 
        return(
         <>
+     
           <Link to={`/editPost/${id}`}>
            <button>Eddit</button> 
            </Link>
@@ -28,9 +33,8 @@ const PostDetails = () => {
             await dispatch(actionFetchAllPosts())
             navigate('/');
             }}>Delete</button>
-      {curentPost?.map((el)=>(
-            <PostCard el={el} />  
-            ))}
+      {curentPost && <PostCard el={curentPost} />  }
+    
         </>
          
     )   

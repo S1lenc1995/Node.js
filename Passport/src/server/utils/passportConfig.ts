@@ -14,7 +14,6 @@ import * as bcrypt from "bcryptjs";
       async (email, password, done) =>  {
         const userService = Container.get(UsersService);
         const user = await userService.getByEmail(email);
-        console.log(user, '55556')
          if (!user) {
           return done(
             {
