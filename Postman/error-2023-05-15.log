@@ -1,0 +1,6 @@
+2023-05-15T13:25:19.440Z error: Unexpected token } in JSON at position 93
+2023-05-15T13:25:31.823Z error: must have required property 'title'
+2023-05-15T13:25:42.208Z error: must have required property 'author',must have required property 'title'
+2023-05-15T13:25:59.883Z error: must have required property 'isPrivate'
+2023-05-15T16:12:57.532Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-15T16:17:03.571Z error: {"errors":{"email or password":"is invalid"}}
