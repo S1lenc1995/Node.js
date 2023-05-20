@@ -1,0 +1,27 @@
+2023-05-09T16:04:39.226Z info: POST:/api/createNewPost
+2023-05-09T16:04:39.229Z info: {"author":"bob@gmail.com","content":"bobbob"}
+2023-05-09T16:04:39.230Z warn: {"ValidationError":["must have required property 'title'","must have required property 'genre'","must have required property 'isPrivate'"]}
+2023-05-09T16:05:26.889Z info: POST:/api/createNewPost
+2023-05-09T16:05:26.890Z info: {"author":"bob@gmail.com","content":"bobbob"}
+2023-05-09T16:05:26.890Z warn: {"ValidationError":["must have required property 'title'","must have required property 'genre'","must have required property 'isPrivate'"]}
+2023-05-09T16:05:29.298Z info: POST:/api/createNewPost
+2023-05-09T16:05:29.299Z info: {"author":"bob@gmail.com","content":"bobbob"}
+2023-05-09T16:05:29.300Z warn: {"ValidationError":["must have required property 'title'","must have required property 'genre'","must have required property 'isPrivate'"]}
+2023-05-09T16:06:08.965Z info: POST:/api/createNewPost
+2023-05-09T16:10:47.746Z info: POST:/api/createNewPost
+2023-05-09T16:13:24.745Z info: POST:/api/createNewPost
+2023-05-09T16:17:01.477Z info: POST:/api/createNewPost
+2023-05-09T16:17:01.479Z info: {"author":"sdcsdcsd","content":"sdcsdcds"}
+2023-05-09T16:17:01.481Z error: [object Object],[object Object],[object Object]
+2023-05-09T16:18:10.875Z info: POST:/api/createNewPost
+2023-05-09T16:18:10.877Z info: {"author":"sdcsdcsd","content":"sdcsdcds"}
+2023-05-09T16:18:10.879Z error: [{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"title"},"message":"must have required property 'title'"},{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"genre"},"message":"must have required property 'genre'"},{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"isPrivate"},"message":"must have required property 'isPrivate'"}]
+2023-05-09T16:19:28.935Z info: POST:/api/createNewPost
+2023-05-09T16:19:28.937Z info: {"author":"sdcsdcsd","content":"sdcsdcds"}
+2023-05-09T16:19:28.939Z error: must have required property 'title',must have required property 'genre',must have required property 'isPrivate'
+2023-05-09T16:25:55.178Z info: POST:/api/createNewPost
+2023-05-09T16:25:55.180Z info: {"author":2,"content":"sdcsdcds"}
+2023-05-09T16:25:55.182Z error: must have required property 'title',must have required property 'genre',must have required property 'isPrivate',must be string
+2023-05-09T16:27:39.567Z info: POST:/api/createNewPost
+2023-05-09T16:27:39.569Z info: {"author":2,"content":"sdcsdcds"}
+2023-05-09T16:27:39.577Z error: must have required property 'title',must have required property 'genre',must have required property 'isPrivate',must be string

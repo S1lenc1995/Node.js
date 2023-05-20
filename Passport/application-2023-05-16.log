@@ -1,0 +1,7 @@
+2023-05-16T13:27:06.040Z info: GET:/api/posts
+2023-05-16T13:28:49.118Z info: OPTIONS:/auth/login
+2023-05-16T13:28:49.135Z info: POST:/auth/login
+2023-05-16T13:28:49.239Z info: OPTIONS:/api/posts
+2023-05-16T13:28:49.244Z info: GET:/api/posts
+2023-05-16T13:28:53.991Z info: GET:/api/posts
+2023-05-16T13:28:54.937Z info: GET:/api/posts

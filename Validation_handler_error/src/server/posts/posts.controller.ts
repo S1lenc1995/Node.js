@@ -61,48 +61,50 @@ class PostsController {
 
     }
 
-         createdNewspost = async (request: express.Request, response: express.Response) => {
-            const post = request.body
-            logger.info(post)
-            const valid = this.postValidator(post)
-            if (!valid) {
-                logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
-                response.status(400).json({
-                    message: this.postValidator.errors.map((e) => e.message),
-                    errors: this.postValidator.errors 
-                })
-                return
-            }
-            try {
-                const createdNewspost = await this.postsService.createdNewspost(post)
-                response.send(createdNewspost)
-            } catch (error) {
-                logger.error({ message: error.message, stack: error.stack })
-                if (process.env.NODE_ENV === 'production') {
-                  response.status(500).json({
-                    message: error.message
-                  })
-                } else {
-                  response.status(500).json({
-                    message: error.message,
-                    stack: error.stack
-                  })
+    /*           createdNewspost = async (request: express.Request, response: express.Response) => {
+                const post = request.body
+                logger.info(post)
+                const valid = this.postValidator(post)
+                if (!valid) {
+                    logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
+                    response.status(400).json({
+                        message: this.postValidator.errors.map((e) => e.message),
+                        errors: this.postValidator.errors 
+                    })
+                    return
                 }
-                return
-            }
-        } 
+                try {
+                    const createdNewspost = await this.postsService.createdNewspost(post)
+                    response.send(createdNewspost)
+                } catch (error) {
+                    logger.error({ message: error.message, stack: error.stack })
+                    if (process.env.NODE_ENV === 'production') {
+                      response.status(500).json({
+                        message: error.message
+                      })
+                    } else {
+                      response.status(500).json({
+                        message: error.message,
+                        stack: error.stack
+                      })
+                    }
+                    return
+                }
+            }   */
 
-            
-        // Спосіб яким ми робили на уроці, не працює, падає нода писав Вам в телеграм
+
+    // Спосіб яким ми робили на уроці, не працює, падає нода писав Вам в телеграм
 
 
-       /*  createdNewspost = async (request: express.Request, response: express.Response) => {
+    createdNewspost = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+        try {
             const post = request.body
             logger.info(post)
             const valid = this.postValidator(post)
             if (!valid) {
+                console.log(this.postValidator.errors, 'as')
                 throw new ValidationError({
-                    message: this.postValidator.errors,
+                    message: this.postValidator.errors.map((e) => e.message),
                 });
             }
             try {
@@ -111,20 +113,25 @@ class PostsController {
             } catch (e) {
                 throw new AppError({ message: e.message });
             }
-        }; */
+        } catch (error) {
+            console.log('++++++')
+            next(error)
+        }
+
+    };
 
 
     updatedNewsposts = async (request: express.Request, response: express.Response) => {
         const post = request.body
-        
+
         const id = Number(request.params.id)
         logger.info(post)
         const valid = this.postValidator(post)
         if (!valid) {
-            logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
+            logger.warn({ ValidationError: this.postValidator.errors.map((e) => e.message) })
             response.status(400).json({
                 message: this.postValidator.errors.map((e) => e.message),
-                errors: this.postValidator.errors 
+                errors: this.postValidator.errors
             })
             return
         }
@@ -134,14 +141,14 @@ class PostsController {
         } catch (error) {
             logger.error({ message: error.message, stack: error.stack })
             if (process.env.NODE_ENV === 'production') {
-              response.status(500).json({
-                message: error.message
-              })
+                response.status(500).json({
+                    message: error.message
+                })
             } else {
-              response.status(500).json({
-                message: error.message,
-                stack: error.stack
-              })
+                response.status(500).json({
+                    message: error.message,
+                    stack: error.stack
+                })
             }
             return
         }

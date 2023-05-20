@@ -1,0 +1,5 @@
+2023-05-09T16:17:01.481Z error: [object Object],[object Object],[object Object]
+2023-05-09T16:18:10.879Z error: [{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"title"},"message":"must have required property 'title'"},{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"genre"},"message":"must have required property 'genre'"},{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"isPrivate"},"message":"must have required property 'isPrivate'"}]
+2023-05-09T16:19:28.939Z error: must have required property 'title',must have required property 'genre',must have required property 'isPrivate'
+2023-05-09T16:25:55.182Z error: must have required property 'title',must have required property 'genre',must have required property 'isPrivate',must be string
+2023-05-09T16:27:39.577Z error: must have required property 'title',must have required property 'genre',must have required property 'isPrivate',must be string

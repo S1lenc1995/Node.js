@@ -9,6 +9,7 @@ const errorHandle = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('asasasasas')
   logger.error(err);
   if (err instanceof AppError) {
     return res.status(err.httpCode).json({ message: err.message });
