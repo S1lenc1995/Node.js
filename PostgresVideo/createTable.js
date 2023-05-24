@@ -2,7 +2,7 @@ const connection = require("./connection")
 
 connection.query(
     `CREATE TABLE videos (
-        ID INTEGER PRIMARY KEY AUTO_INCREMENT,
+        ID SERIAL PRIMARY KEY,
         Title TEXT,
         Views FLOAT4,
         Category TEXT
