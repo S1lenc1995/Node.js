@@ -1,0 +1,43 @@
+2023-05-13T15:10:57.066Z info: POST:/auth/register
+2023-05-13T15:13:59.327Z info: POST:/auth/register
+2023-05-13T15:15:09.877Z info: POST:/auth/register
+2023-05-13T15:15:58.984Z info: POST:/auth/register
+2023-05-13T15:19:08.039Z info: POST:/auth/register
+2023-05-13T15:19:56.871Z info: POST:/auth/register
+2023-05-13T15:20:36.668Z info: POST:/auth/register
+2023-05-13T15:21:55.380Z info: POST:/auth/register
+2023-05-13T15:28:12.581Z info: POST:/auth/register
+2023-05-13T15:32:09.731Z info: POST:/auth/register
+2023-05-13T15:33:35.780Z info: POST:/auth/register
+2023-05-13T15:36:09.327Z info: POST:/auth/register
+2023-05-13T18:00:08.145Z info: POST:/auth/login
+2023-05-13T18:00:08.150Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T18:03:35.988Z info: POST:/auth/login
+2023-05-13T18:03:35.992Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T18:05:30.063Z info: POST:/auth/login
+2023-05-13T18:05:30.067Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T18:06:16.981Z info: POST:/auth/login
+2023-05-13T18:06:16.985Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T18:08:52.975Z info: POST:/auth/login
+2023-05-13T18:08:52.992Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T18:09:34.007Z info: POST:/auth/login
+2023-05-13T18:09:34.012Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T18:10:46.891Z info: POST:/auth/login
+2023-05-13T18:10:46.906Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T18:13:10.025Z info: POST:/auth/login
+2023-05-13T18:14:34.103Z info: POST:/auth/login
+2023-05-13T19:44:06.559Z info: POST:/auth/login
+2023-05-13T19:44:06.581Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T19:44:51.792Z info: POST:/auth/login
+2023-05-13T19:44:51.814Z error: {"errors":{"email or password":"is invalid"}}
+2023-05-13T19:45:15.592Z info: POST:/auth/login
+2023-05-13T19:45:54.762Z info: POST:/auth/login
+2023-05-13T19:46:33.756Z info: POST:/auth/login
+2023-05-13T19:47:24.385Z info: POST:/auth/login
+2023-05-13T19:48:28.717Z info: POST:/auth/login
+2023-05-13T19:52:20.216Z info: POST:/auth/login
+2023-05-13T19:54:59.335Z info: POST:/auth/register
+2023-05-13T19:55:25.012Z info: POST:/auth/register
+2023-05-13T19:55:39.407Z info: POST:/auth/register
+2023-05-13T20:21:01.194Z info: POST:/auth/register
+2023-05-13T20:21:01.198Z warn: {"ValidationError":["must have required property 'confirmPassword'","must match format \"email\""]}
