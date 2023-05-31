@@ -10,11 +10,11 @@ import {
 import {PostEntity} from "./post"
 
 @Entity()
-class UserEntity extends BaseEntity{
+class User extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number; 
 
-    @PrimaryColumn()
+    @Column()
     email: string;
 
     @Column()
@@ -25,4 +25,4 @@ class UserEntity extends BaseEntity{
     posts: PostEntity[]
 }
 
-export default UserEntity
+export { User as UserEntity };

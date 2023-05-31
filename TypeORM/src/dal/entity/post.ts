@@ -6,9 +6,9 @@ import {
     ManyToOne,
     JoinTable,
 } from "typeorm";
-import  UserEntity  from "./user"
+import  { UserEntity }  from "./user"
 @Entity()
-export class PostEntity extends BaseEntity {
+class Post extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -28,4 +28,6 @@ export class PostEntity extends BaseEntity {
     @JoinTable()
     author: UserEntity
 }
+
+export { Post as PostEntity };
 

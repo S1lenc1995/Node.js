@@ -1,0 +1,41 @@
+2023-05-31T08:39:50.959Z info: OPTIONS:/api/posts
+2023-05-31T08:39:58.752Z info: OPTIONS:/api/posts
+2023-05-31T08:39:58.760Z info: GET:/api/posts
+2023-05-31T08:40:23.124Z info: GET:/api/posts
+2023-05-31T08:40:44.193Z info: OPTIONS:/auth/register
+2023-05-31T08:40:44.239Z info: POST:/auth/register
+2023-05-31T08:43:48.305Z info: OPTIONS:/auth/register
+2023-05-31T08:43:48.323Z info: POST:/auth/register
+2023-05-31T08:48:58.480Z info: OPTIONS:/auth/register
+2023-05-31T08:48:58.497Z info: POST:/auth/register
+2023-05-31T08:50:06.411Z info: OPTIONS:/auth/register
+2023-05-31T08:50:06.429Z info: POST:/auth/register
+2023-05-31T08:51:51.716Z info: OPTIONS:/auth/register
+2023-05-31T08:57:10.127Z info: OPTIONS:/auth/register
+2023-05-31T08:57:10.188Z info: POST:/auth/register
+2023-05-31T09:00:07.529Z info: OPTIONS:/auth/register
+2023-05-31T09:00:07.588Z info: POST:/auth/register
+2023-05-31T09:05:06.492Z info: OPTIONS:/auth/register
+2023-05-31T09:05:06.510Z info: POST:/auth/register
+2023-05-31T09:05:06.750Z info: OPTIONS:/api/posts
+2023-05-31T09:05:06.760Z info: GET:/api/posts
+2023-05-31T09:10:10.115Z info: OPTIONS:/api/posts
+2023-05-31T09:10:10.130Z info: GET:/api/posts
+2023-05-31T09:10:23.587Z info: OPTIONS:/api/createNewPost
+2023-05-31T09:10:23.592Z info: POST:/api/createNewPost
+2023-05-31T09:10:23.594Z info: {"title":"121212","content":"112121221","author":"deded","genre":"Politic","isPrivate":false}
+2023-05-31T09:10:23.656Z error: invalid input syntax for type integer: "deded"
+2023-05-31T09:10:23.659Z error: invalid input syntax for type integer: "deded"
+2023-05-31T09:10:27.551Z info: OPTIONS:/api/posts
+2023-05-31T09:10:27.562Z info: GET:/api/posts
+2023-05-31T09:10:29.776Z info: GET:/api/posts
+2023-05-31T09:18:29.935Z info: OPTIONS:/api/createNewPost
+2023-05-31T09:18:29.941Z info: POST:/api/createNewPost
+2023-05-31T09:18:29.942Z info: {"title":"фвісв","content":"івсівсівс","author":"івсівсівс","genre":"Sport","isPrivate":true}
+2023-05-31T09:18:30.107Z error: invalid input syntax for type integer: "івсівсівс"
+2023-05-31T09:18:30.108Z error: invalid input syntax for type integer: "івсівсівс"
+2023-05-31T09:19:18.406Z info: OPTIONS:/api/createNewPost
+2023-05-31T09:19:18.410Z info: POST:/api/createNewPost
+2023-05-31T09:19:18.411Z info: {"title":"івсівс","content":"івсівс","genre":"Sport","isPrivate":true}
+2023-05-31T09:19:18.412Z warn: {"ValidationError":["must have required property 'author'"]}
+2023-05-31T09:19:18.413Z error: must have required property 'author'

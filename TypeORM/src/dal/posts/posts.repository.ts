@@ -35,11 +35,11 @@ export class PostsRepository {
         return res
     }
     async updatedNewsposts(_id: number, post) {
-        const res =  await this.manager.update(PostEntity, {id: _id } , post)
+        const res =  await this.manager.update(PostEntity, {where: {id: _id }} , post)
         return res
     }
     async deleteById(_id: number): Promise<number | null> {
-        const result = await this.manager.delete(PostEntity, { id: _id });
+        const result = await this.manager.delete(PostEntity, {where: {id: _id }});
         return result
     }
 }
