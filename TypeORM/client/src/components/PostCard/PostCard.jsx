@@ -8,7 +8,7 @@ const PostCard = ({el, cut}) =>{
             <p>Genre: {genre}</p>
             {cut?<p>Article: {content.length>10? content.substring(0, 10) + '...' : content}</p>:<p>Article:{content}</p> }
             <p>Create date: {createDate}</p>
-            <p>Author: {author}</p>
+            <p>Author: {author.email}</p>
             <></>
         </div>
     )

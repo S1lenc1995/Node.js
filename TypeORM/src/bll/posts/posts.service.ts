@@ -13,7 +13,7 @@ class PostsService {
         return await this.postsRepository.getAllPosts(params)
     }
     async getById(_id: number) {
-        return await this.postsRepository.getById(_id)
+        return this.postsRepository.getById(_id)
     }
 
     async createdNewspost(newPost: Post) {

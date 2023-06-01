@@ -30,7 +30,7 @@ const EditPost = () => {
       // Поки дані не завантажені, повертаємо пусту розмітку або спіннер
       return null;
     }
-    const {title, content, author, genre, isPrivate} = curentPost
+    const {title, content, /* author, */ genre, isPrivate} = curentPost
     
     return( 
       <>
@@ -40,7 +40,7 @@ const EditPost = () => {
         <div className="container__form"> 
   
             <Formik 
-            initialValues={{ title: title, content: content, author: author, genre: genre, isPrivate: isPrivate}}  
+            initialValues={{ title: title, content: content, /* author: author, */ genre: genre, isPrivate: isPrivate}}  
             onSubmit={ async (values)  => {
             console.log(values, 'ddddddd');
             for (const key in values) {
@@ -71,13 +71,13 @@ const EditPost = () => {
                 value={values.content}
                 onChange={handleChange}
             />
-            <TextField 
+           {/*  <TextField 
                 id="outlined-controlled" 
                 label="author" 
                 name="author"
                 value={values.author}
                 onChange={handleChange}
-            />
+            /> */}
                <FormControl   style={{ margin: "20px" }}>
   <InputLabel id="demo-simple-select-label">Genre</InputLabel>
               <Select

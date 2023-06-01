@@ -6,7 +6,7 @@
     "password": "underwater",
     "database": "newDB",
     "entities": [
-        "./src/dal/entity/*.ts"
+        "./build/dal/entity/*.js"
     ],
     "synchronize": true
 }

@@ -39,3 +39,199 @@
 2023-05-31T09:19:18.411Z info: {"title":"івсівс","content":"івсівс","genre":"Sport","isPrivate":true}
 2023-05-31T09:19:18.412Z warn: {"ValidationError":["must have required property 'author'"]}
 2023-05-31T09:19:18.413Z error: must have required property 'author'
+2023-05-31T09:47:53.403Z info: OPTIONS:/api/posts
+2023-05-31T09:47:53.422Z info: GET:/api/posts
+2023-05-31T09:48:01.708Z info: OPTIONS:/api/posts
+2023-05-31T09:48:09.173Z info: OPTIONS:/api/posts
+2023-05-31T09:48:09.186Z info: GET:/api/posts
+2023-05-31T09:48:29.871Z info: OPTIONS:/auth/login
+2023-05-31T09:48:29.885Z info: POST:/auth/login
+2023-05-31T09:48:30.069Z info: OPTIONS:/api/posts
+2023-05-31T09:48:30.073Z info: GET:/api/posts
+2023-05-31T10:38:43.378Z info: OPTIONS:/api/posts
+2023-05-31T10:38:43.392Z info: GET:/api/posts
+2023-05-31T10:38:50.865Z info: OPTIONS:/api/createNewPost
+2023-05-31T10:38:50.881Z info: POST:/api/createNewPost
+2023-05-31T10:38:50.882Z error: No authorization token was found
+2023-05-31T14:46:49.725Z info: OPTIONS:/api/createNewPost
+2023-05-31T14:46:49.773Z info: POST:/api/createNewPost
+2023-05-31T14:46:49.780Z error: No authorization token was found
+2023-05-31T14:48:31.064Z info: OPTIONS:/api/createNewPost
+2023-05-31T14:48:31.118Z info: POST:/api/createNewPost
+2023-05-31T14:48:31.125Z error: No authorization token was found
+2023-05-31T14:48:40.421Z info: OPTIONS:/api/createNewPost
+2023-05-31T14:48:40.426Z info: POST:/api/createNewPost
+2023-05-31T14:48:40.427Z error: No authorization token was found
+2023-05-31T14:52:09.023Z info: OPTIONS:/api/createNewPost
+2023-05-31T14:52:09.075Z info: POST:/api/createNewPost
+2023-05-31T14:52:09.082Z error: No authorization token was found
+2023-05-31T14:52:15.450Z info: OPTIONS:/api/createNewPost
+2023-05-31T14:52:15.457Z info: POST:/api/createNewPost
+2023-05-31T14:52:15.458Z error: No authorization token was found
+2023-05-31T15:22:22.446Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:22:22.491Z info: POST:/api/createNewPost
+2023-05-31T15:22:22.856Z error: No authorization token was found
+2023-05-31T15:25:08.091Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:25:08.161Z info: POST:/api/createNewPost
+2023-05-31T15:25:08.171Z error: No authorization token was found
+2023-05-31T15:28:47.433Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:28:47.480Z info: POST:/api/createNewPost
+2023-05-31T15:28:47.489Z error: No authorization token was found
+2023-05-31T15:31:41.573Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:31:41.625Z info: POST:/api/createNewPost
+2023-05-31T15:31:41.633Z error: No authorization token was found
+2023-05-31T15:32:49.652Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:32:49.689Z info: POST:/api/createNewPost
+2023-05-31T15:32:49.699Z error: No authorization token was found
+2023-05-31T15:40:51.094Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:40:51.143Z info: POST:/api/createNewPost
+2023-05-31T15:40:51.146Z info: {"isPrivate":false}
+2023-05-31T15:40:51.150Z warn: {"ValidationError":["must have required property 'author'","must have required property 'content'","must have required property 'title'","must have required property 'genre'"]}
+2023-05-31T15:40:51.155Z error: must have required property 'author',must have required property 'content',must have required property 'title',must have required property 'genre'
+2023-05-31T15:40:58.367Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:40:58.374Z info: POST:/api/createNewPost
+2023-05-31T15:40:58.375Z info: {"title":"sdcsdc","content":"sdcsdcsd","genre":"Business","isPrivate":true}
+2023-05-31T15:40:58.376Z warn: {"ValidationError":["must have required property 'author'"]}
+2023-05-31T15:40:58.377Z error: must have required property 'author'
+2023-05-31T15:41:27.301Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:41:27.307Z info: POST:/api/createNewPost
+2023-05-31T15:41:27.308Z info: {"title":"zx","content":"zx","author":"dcsdc","genre":"Business","isPrivate":true}
+2023-05-31T15:41:27.311Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:41:27.313Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:44:51.993Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:44:51.999Z info: POST:/api/createNewPost
+2023-05-31T15:44:52.000Z info: {"title":"rferf","content":"erferfer","author":"sdc","genre":"Business","isPrivate":true}
+2023-05-31T15:44:52.001Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:44:52.002Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:47:08.901Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:47:08.948Z info: POST:/api/createNewPost
+2023-05-31T15:47:08.963Z error: No authorization token was found
+2023-05-31T15:47:14.824Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:47:14.832Z info: POST:/api/createNewPost
+2023-05-31T15:47:14.834Z error: No authorization token was found
+2023-05-31T15:50:46.133Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:50:46.181Z info: POST:/api/createNewPost
+2023-05-31T15:50:46.192Z error: No authorization token was found
+2023-05-31T15:52:01.688Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:52:01.742Z info: POST:/api/createNewPost
+2023-05-31T15:52:01.752Z error: No authorization token was found
+2023-05-31T15:54:37.752Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:54:37.790Z info: POST:/api/createNewPost
+2023-05-31T15:54:37.801Z error: No authorization token was found
+2023-05-31T15:56:10.158Z info: OPTIONS:/api/createNewPost
+2023-05-31T15:56:10.197Z info: POST:/api/createNewPost
+2023-05-31T15:56:10.220Z info: {"title":"xc xc ","content":"sdvsdc","author":"sdcsdc","genre":"Business","isPrivate":true}
+2023-05-31T15:56:15.547Z info: OPTIONS:/api/posts
+2023-05-31T15:56:15.561Z info: GET:/api/posts
+2023-05-31T15:56:20.727Z info: OPTIONS:/api/post/1
+2023-05-31T15:56:20.738Z info: GET:/api/post/1
+2023-05-31T16:18:31.547Z info: OPTIONS:/api/createNewPost
+2023-05-31T16:18:31.567Z info: POST:/api/createNewPost
+2023-05-31T16:18:31.575Z info: {"title":"sdsd","content":"sdsd","author":"sdsd","genre":"Sport","isPrivate":true}
+2023-05-31T16:19:25.643Z info: OPTIONS:/api/posts
+2023-05-31T16:19:25.657Z info: GET:/api/posts
+2023-05-31T16:19:31.330Z info: OPTIONS:/api/posts
+2023-05-31T16:19:31.334Z info: GET:/api/posts
+2023-05-31T16:23:51.451Z info: OPTIONS:/api/post/1
+2023-05-31T16:23:51.462Z info: GET:/api/post/1
+2023-05-31T16:30:04.628Z info: OPTIONS:/api/posts
+2023-05-31T16:30:04.650Z info: GET:/api/posts
+2023-05-31T16:30:07.957Z info: GET:/api/posts
+2023-05-31T16:30:10.657Z info: OPTIONS:/api/post/1
+2023-05-31T16:30:10.665Z info: GET:/api/post/1
+2023-05-31T16:31:47.296Z info: OPTIONS:/api/posts
+2023-05-31T16:31:47.308Z info: GET:/api/posts
+2023-05-31T16:31:50.395Z info: GET:/api/posts
+2023-05-31T16:31:53.271Z info: OPTIONS:/api/post/2
+2023-05-31T16:31:53.280Z info: GET:/api/post/2
+2023-05-31T17:35:47.799Z info: OPTIONS:/api/post/2
+2023-05-31T17:35:47.812Z info: GET:/api/post/2
+2023-05-31T17:35:51.189Z info: OPTIONS:/api/posts
+2023-05-31T17:35:51.196Z info: GET:/api/posts
+2023-05-31T17:36:45.067Z info: OPTIONS:/api/posts
+2023-05-31T17:36:45.080Z info: GET:/api/posts
+2023-05-31T17:36:47.409Z info: OPTIONS:/api/post/1
+2023-05-31T17:36:47.415Z info: GET:/api/post/1
+2023-05-31T17:38:12.686Z info: OPTIONS:/api/posts
+2023-05-31T17:38:12.698Z info: GET:/api/posts
+2023-05-31T17:38:15.501Z info: GET:/api/posts
+2023-05-31T17:38:18.121Z info: OPTIONS:/api/post/1
+2023-05-31T17:38:18.131Z info: GET:/api/post/1
+2023-05-31T17:39:29.758Z info: OPTIONS:/api/posts
+2023-05-31T17:39:29.771Z info: GET:/api/posts
+2023-05-31T17:39:30.972Z info: GET:/api/posts
+2023-05-31T17:39:33.916Z info: OPTIONS:/api/post/1
+2023-05-31T17:39:33.926Z info: GET:/api/post/1
+2023-05-31T17:40:43.453Z info: OPTIONS:/api/posts
+2023-05-31T17:40:43.466Z info: GET:/api/posts
+2023-05-31T17:40:44.561Z info: GET:/api/posts
+2023-05-31T17:40:47.742Z info: OPTIONS:/api/post/1
+2023-05-31T17:40:47.750Z info: GET:/api/post/1
+2023-05-31T17:41:41.910Z info: OPTIONS:/api/posts
+2023-05-31T17:41:41.927Z info: GET:/api/posts
+2023-05-31T17:41:42.652Z info: GET:/api/posts
+2023-05-31T17:41:44.785Z info: OPTIONS:/api/post/1
+2023-05-31T17:41:44.791Z info: GET:/api/post/1
+2023-05-31T17:44:01.289Z info: OPTIONS:/api/posts
+2023-05-31T17:44:01.302Z info: GET:/api/posts
+2023-05-31T17:44:02.355Z info: GET:/api/posts
+2023-05-31T17:44:04.901Z info: OPTIONS:/api/post/1
+2023-05-31T17:44:04.909Z info: GET:/api/post/1
+2023-05-31T17:44:55.132Z info: OPTIONS:/api/posts
+2023-05-31T17:44:55.144Z info: GET:/api/posts
+2023-05-31T17:44:56.184Z info: GET:/api/posts
+2023-05-31T17:44:58.311Z info: OPTIONS:/api/post/2
+2023-05-31T17:44:58.316Z info: GET:/api/post/2
+2023-05-31T18:55:31.210Z info: OPTIONS:/api/post/2
+2023-05-31T18:55:31.231Z info: GET:/api/post/2
+2023-05-31T18:55:35.244Z info: GET:/api/post/2
+2023-05-31T18:55:40.102Z info: OPTIONS:/api/posts
+2023-05-31T18:55:40.109Z info: GET:/api/posts
+2023-05-31T18:55:42.497Z info: GET:/api/posts
+2023-05-31T18:55:58.019Z info: OPTIONS:/api/posts
+2023-05-31T18:55:58.023Z info: GET:/api/posts
+2023-05-31T18:56:00.565Z info: OPTIONS:/api/post/1
+2023-05-31T18:56:00.573Z info: GET:/api/post/1
+2023-05-31T18:56:03.099Z info: GET:/api/post/1
+2023-05-31T18:56:09.997Z info: OPTIONS:/api/editpost/1
+2023-05-31T18:56:10.038Z info: PUT:/api/editpost/1
+2023-05-31T18:56:10.044Z info: {"title":"11111","content":"sdvsdc","genre":"Business","isPrivate":true}
+2023-05-31T18:56:10.047Z warn: {"ValidationError":["must have required property 'author'"]}
+2023-05-31T18:56:10.050Z error: must have required property 'author'
+2023-05-31T18:56:14.685Z info: OPTIONS:/api/posts
+2023-05-31T18:56:14.690Z info: GET:/api/posts
+2023-05-31T18:56:16.164Z info: GET:/api/posts
+2023-05-31T18:56:18.706Z info: GET:/api/posts
+2023-05-31T19:08:28.284Z info: OPTIONS:/api/posts
+2023-05-31T19:08:28.289Z info: GET:/api/posts
+2023-05-31T19:08:36.228Z info: OPTIONS:/api/posts
+2023-05-31T19:08:36.232Z info: GET:/api/posts
+2023-05-31T19:10:28.929Z info: OPTIONS:/api/posts
+2023-05-31T19:10:28.938Z info: GET:/api/posts
+2023-05-31T19:10:40.732Z info: OPTIONS:/api/createNewPost
+2023-05-31T19:10:40.738Z info: POST:/api/createNewPost
+2023-05-31T19:10:40.743Z info: {"title":"asd","content":"asd","genre":"Business","isPrivate":true}
+2023-05-31T19:10:40.743Z warn: {"ValidationError":["must have required property 'author'"]}
+2023-05-31T19:10:40.744Z error: must have required property 'author'
+2023-05-31T19:12:43.828Z info: OPTIONS:/api/createNewPost
+2023-05-31T19:12:43.873Z info: POST:/api/createNewPost
+2023-05-31T19:12:43.888Z info: {"title":"adfa","content":"adfvadf","genre":"Business","isPrivate":true}
+2023-05-31T19:12:46.449Z info: OPTIONS:/api/posts
+2023-05-31T19:12:46.458Z info: GET:/api/posts
+2023-05-31T19:17:47.219Z info: OPTIONS:/api/posts
+2023-05-31T19:17:47.238Z info: GET:/api/posts
+2023-05-31T19:17:55.589Z info: OPTIONS:/api/post/3
+2023-05-31T19:17:55.599Z info: GET:/api/post/3
+2023-05-31T19:21:11.827Z info: OPTIONS:/api/posts
+2023-05-31T19:21:11.832Z info: GET:/api/posts
+2023-05-31T19:21:14.512Z info: GET:/api/posts
+2023-05-31T19:22:59.136Z info: OPTIONS:/api/posts
+2023-05-31T19:22:59.157Z info: GET:/api/posts
+2023-05-31T19:30:43.839Z info: OPTIONS:/api/posts
+2023-05-31T19:30:43.854Z info: GET:/api/posts
+2023-05-31T19:57:33.086Z info: OPTIONS:/api/posts
+2023-05-31T19:57:33.102Z info: GET:/api/posts
+2023-05-31T19:59:38.714Z info: OPTIONS:/api/posts
+2023-05-31T19:59:38.734Z info: GET:/api/posts
+2023-05-31T20:00:36.145Z info: OPTIONS:/api/posts
+2023-05-31T20:00:36.161Z info: GET:/api/posts

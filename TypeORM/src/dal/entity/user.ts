@@ -14,7 +14,7 @@ class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number; 
 
-    @Column()
+    @PrimaryColumn()
     email: string;
 
     @Column()

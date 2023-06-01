@@ -22,7 +22,7 @@ const CreatePost = () => {
          <ButtonToMainPage/>
         <div className="container__form">
         <Formik 
-        initialValues={{ title: '', content: '', author: '', genre: '', isPrivate: false }} 
+        initialValues={{ title: '', content: '',/*  author: '', */ genre: '', isPrivate: false }} 
         onSubmit={(values, { resetForm }) => {
           console.log(values, '3333333');
           for (const key in values) {
@@ -56,14 +56,14 @@ const CreatePost = () => {
               rows={8}
               maxRows={8}
             />
-            <TextField 
+           {/*  <TextField 
               id="outlined-controlled" 
               label="author" 
               name="author"
               value={values.author}
               onChange={handleChange}
                style={{ margin: "20px" }} 
-            />
+            /> */}
             <FormControl   style={{ margin: "20px" }}>
   <InputLabel id="demo-simple-select-label">Genre</InputLabel>
               <Select

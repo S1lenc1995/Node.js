@@ -3,3 +3,27 @@
 2023-05-31T09:18:30.107Z error: invalid input syntax for type integer: "івсівсівс"
 2023-05-31T09:18:30.108Z error: invalid input syntax for type integer: "івсівсівс"
 2023-05-31T09:19:18.413Z error: must have required property 'author'
+2023-05-31T10:38:50.882Z error: No authorization token was found
+2023-05-31T14:46:49.780Z error: No authorization token was found
+2023-05-31T14:48:31.125Z error: No authorization token was found
+2023-05-31T14:48:40.427Z error: No authorization token was found
+2023-05-31T14:52:09.082Z error: No authorization token was found
+2023-05-31T14:52:15.458Z error: No authorization token was found
+2023-05-31T15:22:22.856Z error: No authorization token was found
+2023-05-31T15:25:08.171Z error: No authorization token was found
+2023-05-31T15:28:47.489Z error: No authorization token was found
+2023-05-31T15:31:41.633Z error: No authorization token was found
+2023-05-31T15:32:49.699Z error: No authorization token was found
+2023-05-31T15:40:51.155Z error: must have required property 'author',must have required property 'content',must have required property 'title',must have required property 'genre'
+2023-05-31T15:40:58.377Z error: must have required property 'author'
+2023-05-31T15:41:27.311Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:41:27.313Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:44:52.001Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:44:52.002Z error: Cannot read properties of undefined (reading 'user_id')
+2023-05-31T15:47:08.963Z error: No authorization token was found
+2023-05-31T15:47:14.834Z error: No authorization token was found
+2023-05-31T15:50:46.192Z error: No authorization token was found
+2023-05-31T15:52:01.752Z error: No authorization token was found
+2023-05-31T15:54:37.801Z error: No authorization token was found
+2023-05-31T18:56:10.050Z error: must have required property 'author'
+2023-05-31T19:10:40.744Z error: must have required property 'author'

@@ -6,6 +6,7 @@ import Ajv from "ajv"
 import postsSchema from "./posts.schema";
 import { AppError, ValidationError } from "../utils/customErrors";
 import logger from "../utils/logger"
+import auth from "../../server/middlewares/auth.passport.middlewate";
 
 @Service()
 class PostsController {
@@ -27,7 +28,7 @@ class PostsController {
 
 
     public intializeRoutes() {
-        const requireAuthMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+/*         const requireAuthMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
             const token = req.headers.authorization;
             if (!token) {
                 return res.status(401).json({ message: "Unauthorized" });
@@ -37,12 +38,13 @@ class PostsController {
             // Наприклад, викликати функцію перевірки токену з бібліотеки jsonwebtoken і зберегти розкодовані дані у `req.user`
 
             next();
-        };
-        this.router.get('/api/posts', requireAuthMiddleware, this.getAll);
-        this.router.get('/api/post/:id', requireAuthMiddleware, this.getById);
-        this.router.post('/api/createNewPost', requireAuthMiddleware, this.createdNewspost);
-        this.router.put('/api/editpost/:id', requireAuthMiddleware, this.updatedNewsposts);
-        this.router.delete('/api/delete/:id', requireAuthMiddleware, this.deleteNewsposts);
+        }; */
+        /* requireAuthMiddleware */
+        this.router.get('/api/posts',auth.required, this.getAll);
+        this.router.get('/api/post/:id', auth.required, this.getById);
+        this.router.post('/api/createNewPost', auth.required, this.createdNewspost);
+        this.router.put('/api/editpost/:id', auth.required, this.updatedNewsposts);
+        this.router.delete('/api/delete/:id', auth.required,  this.deleteNewsposts);
     }
 
     getAll = async (request: express.Request, response: express.Response) => {
@@ -63,11 +65,20 @@ class PostsController {
     }
 
     getById = async (request: express.Request, response: express.Response) => {
+        console.log('111111111111111')
         try {
+            console.log(request.params.id, 'id')
             const getById = await this.postsService.getById(Number(request.params.id))
-            getById === null ? response.sendStatus(404) : response.send(getById)
+            console.log(getById , 'idddd')
+            
+            /* getById === null ? response.sendStatus(404) : response.send(getById) */
+            if (getById === null) {
+                response.sendStatus(404);
+              } else {
+                response.send(getById);
+              }
         } catch (error) {
-            response.sendStatus(500).send(error);
+            response.status(500).send(error);
         }
 
     }
@@ -84,7 +95,11 @@ class PostsController {
                 });
             }
             try {
-                const createdNewspost = await this.postsService.createdNewspost(post)
+                const createdNewspost = await this.postsService.createdNewspost({
+                    ...post,
+                    author: { ...request["auth"], id: request["auth"].user_id },
+                    createDate: () => 'CURRENT_TIMESTAMP',
+                })
                 response.send(createdNewspost)
             } catch (error) {
                 logger.error({ message: error.message, stack: error.stack })
@@ -120,11 +135,11 @@ class PostsController {
                 response.send(updatedNewsposts)
             } catch (error) {
                 logger.error({ message: error.message, stack: error.stack })
-            if (process.env.NODE_ENV === 'development') {
-                throw error; 
-            } else {
-                throw new AppError({ message: error.message }); 
-            }
+                if (process.env.NODE_ENV === 'development') {
+                    throw error;
+                } else {
+                    throw new AppError({ message: error.message });
+                }
             }
         } catch (error) {
             next(error)

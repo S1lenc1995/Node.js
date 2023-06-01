@@ -24,24 +24,30 @@ export const {
 export const actionFetchRegistrationUser = (value)=>(dispatch)=>{
     return axios
     .post('http://localhost:3000/auth/register', value)
-    .then(({data})=>{
+    .then(({data, status })=>{
+        alert('qqqqqqq')
+        alert(status)
        setAuthToken(data.token)
        dispatch(actionToken(data.token))
     })
-    .catch(() => {
-    
+    .catch((err) => {
+        alert(err.response.data)
+        console.log(err.response.data)
       });
 }
 
 export const actionFetchLoginUser = (value)=>(dispatch)=>{
     return axios
     .post('http://localhost:3000/auth/login', value)
-    .then(({data})=>{
+    .then(({data, status})=>{
+        alert('qqqqqqq')
+        alert(status)
        setAuthToken(data.user.token)
        dispatch(actionToken(data.user.token))
     })
-    .catch(() => {
-    
+    .catch((err) => {
+        alert(err.response.data)
+        console.log(err)
       });
 }
 

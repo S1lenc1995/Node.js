@@ -13,6 +13,7 @@ const PostDetails = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let curentPost = useSelector(selectorCurentPost)
+    console.log(curentPost, '12')
     const token = useSelector(selectorToken)
 
     useEffect(()=>{

@@ -1,5 +1,6 @@
+import { User } from "./users.interface";
 export interface Post {
-    author: string;
+    author?: User;
     content: string;
     title: string;
     id: number;
@@ -10,6 +11,7 @@ export interface CreatePost {
     author: string;
     content: string;
     title: string;
+    createDate?: Date;
 }
 
 export interface PagedPosts {

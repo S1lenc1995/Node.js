@@ -58,7 +58,7 @@ class AuthController {
             { user_id: user.id, email: user.email },
             "secret",
             {
-              expiresIn: "12h",
+              expiresIn: "2h",
             }
           );
           user.password = "";
@@ -75,6 +75,7 @@ class AuthController {
     request: express.Request,
     response: express.Response
   ) => {
+    console.log(request.body, '334343')
     const valid = this.postValidator(request.body)
     if(!valid){
       logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})

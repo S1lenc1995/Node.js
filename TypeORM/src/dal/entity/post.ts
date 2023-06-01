@@ -24,6 +24,9 @@ class Post extends BaseEntity {
     @Column()
     isPrivate: boolean;
 
+    @Column()
+    createDate: Date;
+
     @ManyToOne((type) => UserEntity, (user) => user.posts)
     @JoinTable()
     author: UserEntity

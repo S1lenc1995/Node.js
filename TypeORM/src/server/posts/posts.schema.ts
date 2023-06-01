@@ -1,7 +1,7 @@
 const postsSchema = {
     type: "object",
     properties: {
-      author: { type: "string", maxLength: 25},
+   /*    author: { type: "string", maxLength: 25}, */
       content: { type: "string", maxLength: 256},
       title: { type: "string", maxLength: 50},
       genre: {
@@ -10,7 +10,7 @@ const postsSchema = {
       },
       isPrivate: { type: "boolean" },
     },
-    required: ["author", "content", "title", "genre", "isPrivate"],
+    required: [/* "author" */ "content", "title", "genre", "isPrivate"],
     additionalProperties: false,
   };
   
