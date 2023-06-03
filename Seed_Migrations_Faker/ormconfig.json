@@ -1,0 +1,18 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "underwater",
+    "database": "newDB",
+    "entities": [
+        "src/dal/entity/*.ts"
+    ],
+    "synchronize": false,
+    "migrations": [
+        "src/dal/migrations/*.ts"
+    ],
+    "seeds": [
+        "src/dal/entity/*.ts"
+    ]
+}
