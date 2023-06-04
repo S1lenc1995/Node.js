@@ -9,8 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node build/index.js",
     "db:seed": "ts-node ./src/dal/seed",
-    "db:migrate-up": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d ./src/dataSource.ts",
-    "db:migrate-down": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert -d ./src/dataSource.ts"
+    "db:migrate-up": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/dataSource.ts",
+    "db:migrate-down": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/dataSource.ts"
   },
   "author": "",
   "license": "ISC",

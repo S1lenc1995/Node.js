@@ -1,5 +1,6 @@
 import {
     Entity,
+    Index,
     Column,
     PrimaryGeneratedColumn,
     BaseEntity,
@@ -15,6 +16,7 @@ class User extends BaseEntity {
     id: number; 
 
     @PrimaryColumn()
+    @Index()    // Тут додав індекс, тому що користувачів ми шукаємо по email і відповідно index в цьому місці дасть можливість отримувати дані швидше
     email: string;
 
     @Column()
