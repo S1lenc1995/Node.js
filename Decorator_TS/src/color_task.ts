@@ -1,61 +1,58 @@
 function blur(target: any) {
+    console.log(target.prototype);
     target.prototype.blur = function () {
-      const minValue = Math.min(this.red, this.green, this.blue);
-      this.red -= minValue;
-      this.green -= minValue;
-      this.blue -= minValue;
+        const minValue = Math.min(this.redColor, this.greenColor, this.blueColor);
+        this.redColor -= minValue;
+        this.greenColor -= minValue;
+        this.blueColor -= minValue;
     };
-    return target
-  }
+}
 
-
-@blur()
+@blur
 class Color {
-    #red: number
-    #green: number
-    #blue: number
+    public redColor: number;
+    public greenColor: number;
+    public blueColor: number;
 
     constructor(red: number, green: number, blue: number) {
-        this.#red = this.#validationValue(red)
-        this.#green = this.#validationValue(green)
-        this.#blue = this.#validationValue(blue)
+        this.redColor = this.validationValue(red);
+        this.greenColor = this.validationValue(green);
+        this.blueColor = this.validationValue(blue);
     }
 
-    #validationValue(value: number): number {
+    validationValue(value: number): number {
         if (value < 0 || value > 255) {
-            throw new Error("Enter corect value from 0 to 255")
+            throw new Error("Enter correct value from 0 to 255");
         }
-        return value
+        return value;
     }
 
     get red(): number {
-        return this.#red
+        return this.redColor;
     }
     set red(value: number) {
-        this.#red = this.#validationValue(value)
+        this.redColor = this.validationValue(value);
     }
 
     get green(): number {
-        return this.#green
+        return this.greenColor;
     }
     set green(value: number) {
-        this.#green = this.#validationValue(value)
+        this.greenColor = this.validationValue(value);
     }
 
     get blue(): number {
-        return this.#blue
+        return this.blueColor;
     }
     set blue(value: number) {
-        this.#blue = this.#validationValue(value)
+        this.blueColor = this.validationValue(value);
     }
-
-
 }
 
 const color = new Color(50, 0, 0);
 color.red = 200;
 console.log(color.red);
 
-const c = new Color(20, 40, 255);
+const c: any = new Color(20, 40, 255);
 c.blur();
-console.log(c.red, c.green, c.blue);
+console.log(c.red, c.green, c.blue, 'aaaaaaaaa');
