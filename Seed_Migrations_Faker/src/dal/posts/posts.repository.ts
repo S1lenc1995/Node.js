@@ -32,7 +32,7 @@ export class PostsRepository {
     }
     async getById(_id: number) {
         const queryBuilder = this.manager.createQueryBuilder("post", "p");
-        console.log('+++++++++++++++++++++++++++++')
+        console.log("+")
         let result = await queryBuilder
             .innerJoinAndSelect("p.author", "a")
             .where("p.id = :id", { id: _id })
