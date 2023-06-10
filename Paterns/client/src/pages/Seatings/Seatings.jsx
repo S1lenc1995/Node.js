@@ -1,9 +1,11 @@
 
 import React from 'react';
-import {useParams, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { useEffect } from 'react';
 import {Formik, Form} from 'formik'
+import { selectorUserEmail, selectorUserData} from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
+import { actionFetchUserData, actionFetchUserDataUpdate } from '../../reducers';
 import { TextField, Select, MenuItem, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
 
 
@@ -11,57 +13,84 @@ import { TextField, Select, MenuItem, FormControl, InputLabel, FormControlLabel,
 const Seatings = ()=>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const userEmail = useSelector(selectorUserEmail)
+    const userData = useSelector(selectorUserData)
+    
+    console.log(userData, '99999999')
 
-
+    const {notificationChannel, notificationSent} = userData
+    
     useEffect(()=>{
-     
+        dispatch(actionFetchUserData(userEmail))
     },[])
 
 
+
+    if (notificationChannel === undefined || notificationSent === undefined || userData == null) {
+        // Поки дані не завантажені, повертаємо пусту розмітку або спіннер
+        return null;
+      }
+
+   
+    
+    console.log(notificationChannel,notificationSent , '99999999')
+
+ 
+
+
     return(
+        <>
+      
         <section className="container">
         <div className="container__form"> 
   
             <Formik 
-            initialValues={{ notificationSent: false, notificationChannel:""}}  
+            initialValues={{ notificationSent: notificationSent, notificationChannel: notificationChannel}}  
             onSubmit={ async (values)  => {
-            console.log(values, 'ddddddd');
             for (const key in values) {
                 if (values[key] === '') {
                   delete values[key];
                 }
               }
-        
+            dispatch(actionFetchUserDataUpdate({...values, email:userEmail}))
             navigate('/');
-
+              console.log(values)
             // очистити форму
             }}>
             {({values, handleChange}) => (
             <Form className="container__form--inputs">
-               <FormControl   style={{ margin: "20px" }}>
-  <InputLabel id="demo-simple-select-label">Genre</InputLabel>
+            <FormControl   style={{ margin: "20px" }}>
+            <InputLabel id="demo-simple-select-label">notificationChannel</InputLabel>
               <Select
              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={values.genre}
-                label="genre"
-               name="genre"
-              onChange={handleChange}
-            >
-              <MenuItem value={'inapp'}>inapp</MenuItem>
-              <MenuItem value={'email'}>email</MenuItem>
+             id="demo-simple-select"
+             value={values.notificationChannel}
+             label="notificationChannel"
+             name="notificationChannel"
+             onChange={handleChange}
+           >
+             <MenuItem value={'inapp'}>inapp</MenuItem>
+             <MenuItem value={'email'}>email</MenuItem>
             </Select>
             </FormControl>
-            <FormControlLabel control={<Checkbox  
-       
-            />} label="Private"      onChange={handleChange} 
-            name="isPrivate" checked={values.isPrivate}/> 
-            <button type="submit">Submit</button>
+
+
+            <FormControlLabel 
+            control={<Checkbox />} 
+            label="notificationSent"      
+            onChange={handleChange}  
+            name="notificationSent" 
+            checked={values.notificationSent} /> 
+            <button type="submit">Save</button>
 
             </Form>
             )}
             </Formik>
       </div>
       </section>
+      
+      </>
     )
 }
+
+export default Seatings

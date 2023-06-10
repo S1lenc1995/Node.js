@@ -1,0 +1,45 @@
+2023-06-09T14:53:42.160Z info: GET:/ws
+2023-06-09T14:55:50.105Z info: OPTIONS:/api/posts
+2023-06-09T14:55:50.118Z info: GET:/api/posts
+2023-06-09T14:55:50.123Z error: jwt expired
+2023-06-09T14:56:01.399Z info: OPTIONS:/api/posts
+2023-06-09T14:56:01.407Z info: GET:/api/posts
+2023-06-09T14:56:01.410Z error: jwt expired
+2023-06-09T14:56:06.414Z info: OPTIONS:/api/posts
+2023-06-09T14:56:06.424Z info: GET:/api/posts
+2023-06-09T14:56:06.427Z error: jwt expired
+2023-06-09T14:56:19.014Z info: GET:/api/posts
+2023-06-09T14:56:19.016Z error: No authorization token was found
+2023-06-09T14:56:28.636Z info: OPTIONS:/auth/login
+2023-06-09T14:56:28.674Z info: POST:/auth/login
+2023-06-09T14:56:31.887Z info: OPTIONS:/api/posts
+2023-06-09T14:56:31.895Z info: GET:/api/posts
+2023-06-09T14:56:50.709Z info: OPTIONS:/api/posts
+2023-06-09T14:56:50.716Z info: GET:/api/posts
+2023-06-09T14:56:57.557Z info: OPTIONS:/api/post/1
+2023-06-09T14:56:57.563Z info: GET:/api/post/1
+2023-06-09T14:56:59.884Z info: OPTIONS:/api/posts
+2023-06-09T14:56:59.889Z info: GET:/api/posts
+2023-06-09T14:57:06.252Z info: OPTIONS:/api/post/1
+2023-06-09T14:57:06.258Z info: GET:/api/post/1
+2023-06-09T14:57:08.616Z info: OPTIONS:/api/posts
+2023-06-09T14:57:08.633Z info: GET:/api/posts
+2023-06-09T15:03:54.154Z info: OPTIONS:/api/posts
+2023-06-09T15:03:54.187Z info: GET:/api/posts
+2023-06-09T15:04:34.162Z info: OPTIONS:/api/posts
+2023-06-09T15:04:34.169Z info: GET:/api/posts
+2023-06-09T15:06:32.657Z info: OPTIONS:/api/posts
+2023-06-09T15:06:32.663Z info: GET:/api/posts
+2023-06-09T15:06:36.375Z info: GET:/api/posts
+2023-06-09T15:06:52.163Z info: OPTIONS:/api/posts
+2023-06-09T15:06:52.170Z info: GET:/api/posts
+2023-06-09T15:06:58.436Z info: OPTIONS:/api/posts
+2023-06-09T15:06:58.441Z info: GET:/api/posts
+2023-06-09T15:48:25.729Z info: OPTIONS:/auth/login
+2023-06-09T15:48:25.738Z info: POST:/auth/login
+2023-06-09T15:48:28.252Z info: OPTIONS:/api/posts
+2023-06-09T15:48:28.257Z info: GET:/api/posts
+2023-06-09T15:48:38.108Z info: OPTIONS:/api/post/3
+2023-06-09T15:48:38.117Z info: GET:/api/post/3
+2023-06-09T15:48:50.398Z info: OPTIONS:/api/post/3
+2023-06-09T15:48:50.403Z info: GET:/api/post/3

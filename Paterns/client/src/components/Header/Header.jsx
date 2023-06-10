@@ -1,8 +1,11 @@
-
+import { Link } from "react-router-dom";
 
 const Header = ()=>{
     return(
-        <button>Setings</button>
+        <Link to={'/seatings'}>
+            <button>Setings</button>
+        </Link>
+        
     )
 }
 export default Header

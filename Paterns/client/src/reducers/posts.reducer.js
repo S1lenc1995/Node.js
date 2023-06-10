@@ -59,7 +59,7 @@ export const actionFetchCreateNewPost = (value)=>(dispatch)=>{
     const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
     setAuthToken(token);           
     return axios   
-    .post(`http://localhost:3000/api/createNewPost`, (value))
+    .post(`http://localhost:3000/api/createNewPost`, value)
     .then(({data, status})=>{
         alert(status)
     })

@@ -7,7 +7,9 @@ import postsReducer,{
 }  from "./posts.reducer";
 import usersReducer,{
     actionFetchRegistrationUser,
-    actionFetchLoginUser
+    actionFetchLoginUser,
+    actionFetchUserData,
+    actionFetchUserDataUpdate,
 } from "./users.reducer"
 
 export{
@@ -21,5 +23,7 @@ export{
     usersReducer,
     actionFetchRegistrationUser,
     actionFetchLoginUser,
+    actionFetchUserData,
+    actionFetchUserDataUpdate,
     
 }
