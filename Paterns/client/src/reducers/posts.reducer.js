@@ -45,12 +45,11 @@ export const actionFetchCurentPost = (id)=>(dispatch)=>{
     return axios
     .get(`http://localhost:3000/api/post/${id}`)
     .then(({data, status})=>{
-        console.log(data, 'main')
         alert(status)
         dispatch(actionCurentPost(data))
     })
     .catch((error) => {
-        console.log(error)
+
         alert(error) 
       });
 }

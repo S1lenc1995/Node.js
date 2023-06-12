@@ -37,13 +37,14 @@ export const actionFetchRegistrationUser = (value)=>(dispatch)=>{
     return axios
     .post('http://localhost:3000/auth/register', value)
     .then(({data, status })=>{
+   
         alert(status)
        setAuthToken(data.token)
        dispatch(actionToken(data.token))
-       dispatch(actionUserEmail(data.user.email)) 
+       dispatch(actionUserEmail(data.email)) 
     })
     .catch((err) => {
-        alert(err.response.data)
+      /*   alert(err.response.data) */
       });
 }
 
@@ -51,7 +52,7 @@ export const actionFetchLoginUser = (value)=>(dispatch)=>{
     return axios
     .post('http://localhost:3000/auth/login', value)
     .then(({data, status})=>{
-        console.log(data.user.email)
+   
         alert(status)
        setAuthToken(data.user.token)
        dispatch(actionToken(data.user.token))
@@ -63,7 +64,7 @@ export const actionFetchLoginUser = (value)=>(dispatch)=>{
 }
 
 export const actionFetchUserData = (value)=>(dispatch)=>{
-    console.log(value, 're')
+   
     return axios
     .post('http://localhost:3000/auth/userData', {email: value})
     .then(({data})=>{
@@ -75,7 +76,7 @@ export const actionFetchUserData = (value)=>(dispatch)=>{
 }
 
 export const actionFetchUserDataUpdate = (value)=>(dispatch)=>{
-    console.log(value, 're')
+  
     return axios
     .post('http://localhost:3000/auth/notificationsettings', value)
     .then(({data})=>{

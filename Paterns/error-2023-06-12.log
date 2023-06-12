@@ -1,0 +1,11 @@
+2023-06-12T11:10:35.241Z error: jwt expired
+2023-06-12T11:10:41.961Z error: jwt expired
+2023-06-12T11:11:19.112Z error: invalid signature
+2023-06-12T11:11:29.183Z error: invalid signature
+2023-06-12T11:15:49.763Z error: invalid signature
+2023-06-12T11:23:51.718Z error: invalid signature
+2023-06-12T11:24:22.839Z error: No authorization token was found
+2023-06-12T15:57:13.869Z error: invalid signature
+2023-06-12T15:57:25.075Z error: invalid signature
+2023-06-12T15:57:41.421Z error: No authorization token was found
+2023-06-12T18:18:29.644Z error: jwt expired

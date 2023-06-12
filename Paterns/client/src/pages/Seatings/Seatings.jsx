@@ -16,10 +16,10 @@ const Seatings = ()=>{
     const userEmail = useSelector(selectorUserEmail)
     const userData = useSelector(selectorUserData)
     
-    console.log(userData, '99999999')
+
 
     const {notificationChannel, notificationSent} = userData
-    
+
     useEffect(()=>{
         dispatch(actionFetchUserData(userEmail))
     },[])
@@ -33,7 +33,7 @@ const Seatings = ()=>{
 
    
     
-    console.log(notificationChannel,notificationSent , '99999999')
+
 
  
 
@@ -54,7 +54,7 @@ const Seatings = ()=>{
               }
             dispatch(actionFetchUserDataUpdate({...values, email:userEmail}))
             navigate('/');
-              console.log(values)
+
             // очистити форму
             }}>
             {({values, handleChange}) => (

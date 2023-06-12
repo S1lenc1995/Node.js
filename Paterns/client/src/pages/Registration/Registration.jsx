@@ -14,7 +14,6 @@ const Registration = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const token = useSelector(selectorToken)
-    console.log(token, '1111')
 
     useEffect(()=>{
         if(token){
@@ -36,7 +35,7 @@ const Registration = () => {
           }
            dispatch(actionFetchRegistrationUser(values)) 
           resetForm();
-          console.log(token, 'tok')
+
          
         
         }}> 

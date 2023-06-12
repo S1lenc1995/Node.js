@@ -15,7 +15,6 @@ const EditPost = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let curentPost = useSelector(selectorCurentPost)
-    console.log(id, 'aaaaa')
     
     const token = useSelector(selectorToken)
       
@@ -42,7 +41,6 @@ const EditPost = () => {
             <Formik 
             initialValues={{ title: title, content: content, /* author: author, */ genre: genre, isPrivate: isPrivate}}  
             onSubmit={ async (values)  => {
-            console.log(values, 'ddddddd');
             for (const key in values) {
                 if (values[key] === '') {
                   delete values[key];

@@ -79,7 +79,6 @@ class AuthController {
     request: express.Request,
     response: express.Response
   ) => {
-    console.log(request.body, '334343')
     const valid = this.postValidator(request.body)
     if(!valid){
       logger.warn({ValidationError: this.postValidator.errors.map((e) => e.message)})
@@ -117,7 +116,6 @@ class AuthController {
   };
 
   getByEmail = async (request: express.Request, response: express.Response) => {
-    console.log(request.body, '44444')
     const {email} = request.body
    
     try {
@@ -130,7 +128,6 @@ class AuthController {
 }
 
 updatedUserData = async (request: express.Request, response: express.Response) =>{
-  console.log(request.body)
   const {email, notificationSent, notificationChannel } = request.body
   try {
     const user = await this.usersService.updatedUserData(email,{notificationSent:notificationSent, notificationChannel:notificationChannel})

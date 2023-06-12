@@ -7,6 +7,7 @@ import postsSchema from "./posts.schema";
 import { AppError, ValidationError } from "../utils/customErrors";
 import logger from "../utils/logger"
 import auth from "../../server/middlewares/auth.passport.middlewate";
+import {NotificationService} from "../../bll/notificationService/notificationService";
 
 @Service()
 class PostsController {
@@ -84,6 +85,9 @@ class PostsController {
                     createDate: () => 'CURRENT_TIMESTAMP',
                 })
                 response.send(createdNewspost)
+                const notification = new NotificationService
+                notification.sendNotification(createdNewspost)
+              
             } catch (error) {
                 logger.error({ message: error.message, stack: error.stack })
                 if (process.env.NODE_ENV === 'development') {

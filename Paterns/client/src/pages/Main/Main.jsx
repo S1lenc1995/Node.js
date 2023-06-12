@@ -14,7 +14,6 @@ const Main = () => {
     const dispatch = useDispatch();
     const allPosts = useSelector(selectorAllPosts)
     const token = useSelector(selectorToken)
-    console.log(allPosts)
     useEffect(()=>{
         dispatch(actionFetchAllPosts())
     },[])
