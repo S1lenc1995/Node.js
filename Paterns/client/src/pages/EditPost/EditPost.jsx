@@ -30,6 +30,7 @@ const EditPost = () => {
       return null;
     }
     const {title, content, /* author, */ genre, isPrivate} = curentPost
+    console.log(title, '111111111')
     
     return( 
       <>

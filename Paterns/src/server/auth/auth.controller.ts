@@ -36,7 +36,7 @@ class AuthController {
 
   public initializeRoutes() {
   
-    this.router.post("/auth/register", this.registerJWT);
+    this.router.post("/auth/register", auth.optional, this.registerJWT);
     this.router.post("/auth/login", auth.optional, this.loginPass);
     this.router.post("/auth/userData"/* , auth.optional */, this.getByEmail);
     this.router.post("/auth/notificationsettings"/* , auth.optional */, this.updatedUserData);

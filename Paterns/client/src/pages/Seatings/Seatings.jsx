@@ -1,13 +1,13 @@
 
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState} from 'react';
 import {Formik, Form} from 'formik'
-import { selectorUserEmail, selectorUserData} from '../../selectors';
+import { selectorUserEmail, selectorUserData, selectorToken} from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionFetchUserData, actionFetchUserDataUpdate } from '../../reducers';
+import { actionFetchUserData, actionFetchUserDataUpdate,  actionUserData } from '../../reducers';
 import { TextField, Select, MenuItem, FormControl, InputLabel, FormControlLabel, Checkbox } from '@mui/material';
-
+ 
 
 
 const Seatings = ()=>{
@@ -15,35 +15,24 @@ const Seatings = ()=>{
     const dispatch = useDispatch();
     const userEmail = useSelector(selectorUserEmail)
     const userData = useSelector(selectorUserData)
-    
 
-
-    const {notificationChannel, notificationSent} = userData
 
     useEffect(()=>{
         dispatch(actionFetchUserData(userEmail))
     },[])
 
-
-
-    if (notificationChannel === undefined || notificationSent === undefined || userData == null) {
+    if ( userData == null) {
         // Поки дані не завантажені, повертаємо пусту розмітку або спіннер
         return null;
       }
-
-   
-    
-
-
- 
-
+  
+      const {notificationChannel, notificationSent} = userData 
+      console.log(notificationChannel, notificationSent)
 
     return(
-        <>
-      
+
         <section className="container">
         <div className="container__form"> 
-  
             <Formik 
             initialValues={{ notificationSent: notificationSent, notificationChannel: notificationChannel}}  
             onSubmit={ async (values)  => {
@@ -53,9 +42,9 @@ const Seatings = ()=>{
                 }
               }
             dispatch(actionFetchUserDataUpdate({...values, email:userEmail}))
+            dispatch(actionFetchUserData(userEmail)) 
+            dispatch(actionUserData(null))
             navigate('/');
-
-            // очистити форму
             }}>
             {({values, handleChange}) => (
             <Form className="container__form--inputs">
@@ -88,8 +77,6 @@ const Seatings = ()=>{
             </Formik>
       </div>
       </section>
-      
-      </>
     )
 }
 

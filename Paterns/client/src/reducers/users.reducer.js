@@ -5,7 +5,7 @@ import setAuthToken from "../helpers/setAuthToken";
 const initialState = {
     token: localStorage.getItem("token") || '',
     userEmail: localStorage.getItem("userEmail") || '',
-    userData: ''
+    userData: null
 }
 
 const usersSlice = createSlice({
@@ -15,6 +15,7 @@ const usersSlice = createSlice({
         actionToken: (state, {payload}) => {
             localStorage.setItem('token', payload);
             state.token = payload
+            setAuthToken(payload)
         },
         actionUserEmail: (state, {payload}) => {
             localStorage.setItem('userEmail', payload);
@@ -68,7 +69,7 @@ export const actionFetchUserData = (value)=>(dispatch)=>{
     return axios
     .post('http://localhost:3000/auth/userData', {email: value})
     .then(({data})=>{
-        dispatch(actionUserData(data))
+         dispatch(actionUserData(data))
     })
     .catch((err) => {
         alert(err.response.data)

@@ -10,6 +10,7 @@ import usersReducer,{
     actionFetchLoginUser,
     actionFetchUserData,
     actionFetchUserDataUpdate,
+    actionUserData
 } from "./users.reducer"
 
 export{
@@ -25,5 +26,6 @@ export{
     actionFetchLoginUser,
     actionFetchUserData,
     actionFetchUserDataUpdate,
+    actionUserData
     
 }
