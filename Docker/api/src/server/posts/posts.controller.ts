@@ -7,7 +7,23 @@ import postsSchema from "./posts.schema";
 import { AppError, ValidationError } from "../utils/customErrors";
 import logger from "../utils/logger"
 import auth from "../../server/middlewares/auth.passport.middlewate";
-import {NotificationService} from "../../bll/notificationService/notificationService";
+import { KafkaClient, Producer } from "kafka-node";
+/* import {NotificationService} from "../../bll/notificationService/notificationService"; */
+
+const router = express.Router();
+const client = new KafkaClient({ kafkaHost: "kafka:9092" });
+const producer = new Producer(client);
+
+producer.on("ready", function () {
+  console.log("Kafka Producer is connected and ready.");
+});
+
+producer.on("error", function (error) {
+  console.error("Kafka producer error:", error);
+});
+
+
+
 
 @Service()
 class PostsController {
@@ -37,13 +53,13 @@ class PostsController {
     }
 
     getAll = async (request: express.Request, response: express.Response) => {
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         try {
             const params = {
                 size: request.query.size ? Number(request.query.size) : null,
                 page: request.query.page ? Number(request.query.page) : null,
                 filter: request.query.filter || {},
             };
-            console.log('1111111')
             const pagedPosts = await this.postsService.getAllPosts(params);
             response.send(pagedPosts);
 
@@ -69,28 +85,42 @@ class PostsController {
     }
 
     createdNewspost = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+        console.log("1")
         try {
             const post = request.body
-            logger.info(post)
+        /*     logger.info(post) */
             const valid = this.postValidator(post)
+            console.log("2")
             if (!valid) {
-                logger.warn({ ValidationError: this.postValidator.errors.map((e) => e.message) })
+                console.log("3")
+               /*  logger.warn({ ValidationError: this.postValidator.errors.map((e) => e.message) }) */
                 throw new ValidationError({
                     message: this.postValidator.errors.map((e) => e.message),
                 });
+              
             }
             try {
+                console.log("4")
                 const createdNewspost = await this.postsService.createdNewspost({
                     ...post,
                     author: { ...request["auth"], id: request["auth"].user_id },
                     createDate: () => 'CURRENT_TIMESTAMP',
                 })
+                console.log("5")
+                const buffer = Buffer.from(JSON.stringify(createdNewspost));
+                producer.send(
+                    [{ topic: "web-events-topic", messages: buffer, attributes: 1 }],
+                    (err, data) => {
+                    console.log(data);
+                    }
+                );
+
                 response.send(createdNewspost)
-                const notification = new NotificationService
-                notification.sendNotification(createdNewspost)
-              
+               /*  const notification = new NotificationService
+                notification.sendNotification(createdNewspost) */
+             
             } catch (error) {
-                logger.error({ message: error.message, stack: error.stack })
+              /*   logger.error({ message: error.message, stack: error.stack }) */
                 if (process.env.NODE_ENV === 'development') {
                     throw error; // помилка в режимі розробки
                 } else {

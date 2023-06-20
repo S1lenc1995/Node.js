@@ -4,7 +4,6 @@ import PostsController from "./server/posts/posts.controller";
 import { Container } from "typedi";
 import AuthController from "./server/auth/auth.controller";
 import { createConnection } from "typeorm";
-import { UserBuilder } from "./bll/notificationService/builder/userBuilder";
 import { AppDataSource } from "./dal/appDataSource";
 
 
