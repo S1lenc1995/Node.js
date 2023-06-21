@@ -13,7 +13,7 @@ export class UserBuilder{
     async getByNotification() {
         const queryBuilder = this.manager.createQueryBuilder(this.table, "p");
         const result = await queryBuilder
-        /*     .innerJoinAndSelect("p.author", "a") */ 
+            .innerJoinAndSelect("p.author", "a")
             .where("p.notificationSent = :notificationSent", { notificationSent: true })
             .andWhere("p.notificationChannel = :notificationChannel", { notificationChannel: this.notificationChannel })
             .getMany();
