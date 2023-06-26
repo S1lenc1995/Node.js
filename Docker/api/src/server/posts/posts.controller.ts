@@ -108,6 +108,7 @@ class PostsController {
                 })
                 console.log("5")
                 const buffer = Buffer.from(JSON.stringify(createdNewspost));
+                console.log(buffer ,"6")
                 producer.send(
                     [{ topic: "web-events-topic", messages: buffer, attributes: 1 }],
                     (err, data) => {

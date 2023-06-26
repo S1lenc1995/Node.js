@@ -6,14 +6,10 @@ import AuthController from "./server/auth/auth.controller";
 import { createConnection } from "typeorm";
 import { AppDataSource } from "./dal/appDataSource";
 
-
- 
-
-
 AppDataSource.initialize().then( async() => {
   const app = new App(
     [Container.get(PostsController), Container.get(AuthController)],
-    3000
+    8080
   );
   app.listen();
 })

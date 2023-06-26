@@ -8,7 +8,7 @@ import {
     PrimaryColumn,
     OneToMany,
 } from "typeorm"
-
+import {PostEntity} from "./post"
 
 @Entity()
 class User extends BaseEntity {
@@ -27,6 +27,10 @@ class User extends BaseEntity {
 
     @Column({ type: 'enum', enum: ['inapp', 'email'], default: 'email' })
     notificationChannel: 'inapp' | 'email';
+
+    @OneToMany((type)=> PostEntity, (post)=> post.author)
+    @JoinTable()
+    posts: PostEntity[]
 }
 
 export { User as UserEntity };

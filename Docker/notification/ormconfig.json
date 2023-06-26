@@ -1,6 +1,0 @@
-{
-    "type": "postgres",
-    "url": "postgres://twcfnlcu:wKNKUwuZcCQkBzFgWb_bIjlotTqVf6Vw@snuffleupagus.db.elephantsql.com/twcfnlcu",
-    "synchronize": true,
-    "logging": false
-  }

@@ -51,9 +51,9 @@ services:
       - kafka
     build:
       context: ./api
-  microservice:
+  notification:
     depends_on:
       - kafka
     build:
-      context: ./microservice
+      context: ./notification
 volumes: {}
