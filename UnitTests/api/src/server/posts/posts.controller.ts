@@ -64,7 +64,7 @@ class PostsController {
 
 
         } catch (error) {
-            console.log(error, '1cdascd')
+            console.log(error, '1cdasdcscsdcsdcscd')
             response.sendStatus(500);
         }
     }
