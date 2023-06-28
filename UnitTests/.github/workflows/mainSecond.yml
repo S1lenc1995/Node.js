@@ -20,16 +20,16 @@ jobs:
         with:
           node-version: 18.x
           cache: "npm"
-          cache-dependency-path: api/package-lock.json
+          cache-dependency-path: UnitTests/api/package-lock.json
 
       - name: Install dependencies
         run: npm ci
-        working-directory: api
+        working-directory: UnitTests/api
 
       - name: Test
         run: npm run test
-        working-directory: api
+        working-directory: UnitTests/api
 
       - name: Build
         run: npm run build
-        working-directory: api
+        working-directory: UnitTests/api
