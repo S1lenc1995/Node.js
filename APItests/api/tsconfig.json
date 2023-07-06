@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "target": "es2017",
+    "outDir": "./build",
+    "baseUrl": "./src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "lib": [
+      "ES2017"
+    ],
+    "types": [
+      "reflect-metadata",
+      "jest",
+      "node"
+    ],
+    "moduleResolution": "node",
+    "paths": {
+      "typedi": [
+        "node_modules/typedi/dist/index.d.ts"
+      ]
+    },
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

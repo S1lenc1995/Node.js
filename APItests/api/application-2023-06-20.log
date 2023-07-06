@@ -1,0 +1,87 @@
+2023-06-20T18:47:06.631Z info: GET:/api/posts
+2023-06-20T18:47:06.639Z error: jwt expired
+2023-06-20T18:47:22.137Z info: GET:/api/posts
+2023-06-20T18:47:22.139Z error: jwt expired
+2023-06-20T18:47:38.029Z info: POST:/auth/login
+2023-06-20T18:47:39.278Z info: GET:/api/posts
+2023-06-20T18:47:46.501Z info: POST:/api/createNewPost
+2023-06-20T18:47:46.502Z info: {"title":"cdsc","content":"sdcsdc","genre":"Sport","isPrivate":true}
+2023-06-20T18:47:46.519Z error: Connection "default" was not found.
+2023-06-20T18:47:46.520Z error: Connection "default" was not found.
+2023-06-20T18:49:30.574Z info: POST:/api/createNewPost
+2023-06-20T18:49:30.575Z info: {"title":"fgb","content":"fgb","genre":"Sport","isPrivate":true}
+2023-06-20T18:49:30.608Z error: Connection "default" was not found.
+2023-06-20T18:49:30.608Z error: Connection "default" was not found.
+2023-06-20T19:21:51.723Z info: POST:/api/createNewPost
+2023-06-20T19:21:51.730Z info: {"title":"erer","content":"erer","genre":"Sport","isPrivate":false}
+2023-06-20T19:21:51.785Z error: Connection "default" was not found.
+2023-06-20T19:21:51.787Z error: Connection "default" was not found.
+2023-06-20T19:24:14.281Z info: POST:/api/createNewPost
+2023-06-20T19:24:14.288Z info: {"title":"dfv","content":"dfv","genre":"Business","isPrivate":false}
+2023-06-20T19:24:14.335Z error: Connection "default" was not found.
+2023-06-20T19:24:14.336Z error: Connection "default" was not found.
+2023-06-20T19:25:17.214Z info: POST:/api/createNewPost
+2023-06-20T19:25:17.222Z info: {"title":"sd","content":"sd","genre":"Sport","isPrivate":true}
+2023-06-20T19:25:17.237Z error: Connection "default" was not found.
+2023-06-20T19:25:17.238Z error: Connection "default" was not found.
+2023-06-20T19:25:42.079Z info: GET:/api/posts
+2023-06-20T19:25:54.870Z info: POST:/api/createNewPost
+2023-06-20T19:25:54.872Z info: {"title":"aaaa","content":"aaaa","genre":"Other","isPrivate":false}
+2023-06-20T19:25:55.019Z error: Connection "default" was not found.
+2023-06-20T19:25:55.021Z error: Connection "default" was not found.
+2023-06-20T19:25:56.972Z info: GET:/api/posts
+2023-06-20T19:26:00.589Z info: GET:/api/posts
+2023-06-20T19:26:59.594Z info: POST:/api/createNewPost
+2023-06-20T19:26:59.602Z info: {"title":"1","content":"1","genre":"Business","isPrivate":true}
+2023-06-20T19:26:59.749Z error: Connection "default" was not found.
+2023-06-20T19:26:59.751Z error: Connection "default" was not found.
+2023-06-20T19:27:01.742Z info: GET:/api/posts
+2023-06-20T19:31:54.598Z info: GET:/api/posts
+2023-06-20T19:32:01.646Z info: POST:/api/createNewPost
+2023-06-20T19:32:01.649Z info: {"title":"sd","content":"sd","genre":"Business","isPrivate":false}
+2023-06-20T19:32:01.660Z error: Connection "default" was not found.
+2023-06-20T19:32:01.661Z error: Connection "default" was not found.
+2023-06-20T19:32:03.561Z info: GET:/api/posts
+2023-06-20T19:33:22.746Z info: GET:/api/posts
+2023-06-20T19:33:29.446Z info: GET:/api/post/7
+2023-06-20T19:33:34.936Z info: GET:/api/post/7
+2023-06-20T19:33:41.450Z info: PUT:/api/editpost/7
+2023-06-20T19:33:41.452Z info: {"title":"tdf","content":"sdf","genre":"Business","isPrivate":false}
+2023-06-20T19:33:42.337Z info: GET:/api/posts
+2023-06-20T19:33:43.614Z info: GET:/api/posts
+2023-06-20T19:33:57.709Z info: POST:/api/createNewPost
+2023-06-20T19:33:57.711Z info: {"title":"s","content":"s","genre":"Sport","isPrivate":false}
+2023-06-20T19:33:57.748Z error: Connection "default" was not found.
+2023-06-20T19:33:57.749Z error: Connection "default" was not found.
+2023-06-20T19:38:02.773Z info: POST:/api/createNewPost
+2023-06-20T19:38:02.780Z info: {"title":"sd","content":"sd","genre":"Business","isPrivate":false}
+2023-06-20T19:38:02.793Z error: Connection "default" was not found.
+2023-06-20T19:38:02.794Z error: Connection "default" was not found.
+2023-06-20T19:58:31.226Z info: POST:/api/createNewPost
+2023-06-20T19:58:31.233Z info: {"title":"asd","content":"asd","genre":"Business","isPrivate":true}
+2023-06-20T19:58:31.247Z error: Connection "default" was not found.
+2023-06-20T19:58:31.249Z error: Connection "default" was not found.
+2023-06-20T19:59:40.635Z info: POST:/api/createNewPost
+2023-06-20T19:59:40.640Z info: {"title":"sdf","content":"sdf","genre":"Business","isPrivate":true}
+2023-06-20T19:59:40.651Z error: Connection "default" was not found.
+2023-06-20T19:59:40.652Z error: Connection "default" was not found.
+2023-06-20T20:13:52.082Z info: GET:/api/posts
+2023-06-20T20:13:56.442Z info: GET:/api/posts
+2023-06-20T20:14:05.500Z info: POST:/api/createNewPost
+2023-06-20T20:14:05.503Z info: {"title":"sd","content":"sd","genre":"Business","isPrivate":false}
+2023-06-20T20:14:05.513Z error: Connection "default" was not found.
+2023-06-20T20:14:05.514Z error: Connection "default" was not found.
+2023-06-20T20:15:18.197Z info: POST:/api/createNewPost
+2023-06-20T20:15:18.204Z info: {"title":"df","content":"df","genre":"Business","isPrivate":false}
+2023-06-20T20:15:18.215Z error: Connection "default" was not found.
+2023-06-20T20:15:18.217Z error: Connection "default" was not found.
+2023-06-20T20:16:41.107Z info: POST:/api/createNewPost
+2023-06-20T20:16:41.111Z info: {"title":"s","content":"s","genre":"Business","isPrivate":false}
+2023-06-20T20:16:41.122Z error: Connection "default" was not found.
+2023-06-20T20:16:41.123Z error: Connection "default" was not found.
+2023-06-20T20:21:39.871Z info: GET:/api/posts
+2023-06-20T20:32:20.170Z info: GET:/api/posts
+2023-06-20T20:32:26.684Z info: POST:/api/createNewPost
+2023-06-20T20:32:26.687Z info: {"title":"nbvc","content":"nbvc","genre":"Business","isPrivate":true}
+2023-06-20T20:32:26.696Z error: Connection "default" was not found.
+2023-06-20T20:32:26.697Z error: Connection "default" was not found.
