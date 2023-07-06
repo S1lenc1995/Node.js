@@ -1,0 +1,11 @@
+2023-06-18T19:12:40.587Z info: POST:/auth/register
+2023-06-18T19:13:01.270Z info: POST:/auth/login
+2023-06-18T19:13:02.622Z info: GET:/api/posts
+2023-06-18T19:13:06.579Z info: GET:/api/post/4
+2023-06-18T19:13:08.501Z info: GET:/api/posts
+2023-06-18T19:13:10.421Z info: GET:/api/post/5
+2023-06-18T19:13:12.454Z info: GET:/api/posts
+2023-06-18T19:13:14.830Z info: GET:/api/post/3
+2023-06-18T19:13:17.969Z info: DELETE:/api/delete/3
+2023-06-18T19:13:17.974Z info: GET:/api/posts
+2023-06-18T19:13:20.058Z info: GET:/api/posts
