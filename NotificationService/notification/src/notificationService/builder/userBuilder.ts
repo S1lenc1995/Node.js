@@ -1,6 +1,6 @@
 import { getManager } from "typeorm";
-import { SendInapp } from "../../notificationService/notificationService";
-import { SendEmail } from "../../notificationService/notificationService";
+import { SendInapp } from "../SendInapp";
+import { SendEmail } from "../SendEmail";
 
 export class UserBuilder {
    
