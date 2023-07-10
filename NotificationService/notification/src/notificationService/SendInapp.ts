@@ -1,5 +1,7 @@
 import { notificationChanel } from "../helpers/decorator";
 import { createTransport } from "nodemailer";
+import SocketService from "../helpers/socketService";
+import { io } from "socket.io-client";
 
 export class SendInapp {
     posts
@@ -11,7 +13,11 @@ export class SendInapp {
     @notificationChanel('inapp')
     sendNotification(users) {
         console.log('SendInapp:', users);
-        // Виконати логіку надсилання повідомлень в додатку для users з notificationChanel === 'inapp'
+        const socket = io();
+        users.forEach((user) => {
+            socket.emit("attach", { userId: user.id })
+        });
+        SocketService.emitAll("message", this.posts)
     }
 }
 

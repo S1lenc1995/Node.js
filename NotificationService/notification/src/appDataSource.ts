@@ -17,20 +17,5 @@ export const AppDataSource = {
     return connection;
   },
 };
-/* import { createConnection } from "typeorm";
-import "reflect-metadata"
-
-export const AppDataSource = {
-  async initialize() {
-    await createConnection({
-      type: "postgres",
-      url: "postgres://twcfnlcu:wKNKUwuZcCQkBzFgWb_bIjlotTqVf6Vw@snuffleupagus.db.elephantsql.com/twcfnlcu",
-      synchronize: true,
-      logging: false,
-      name: "default"
-    });
-  },
-};
-  */
 
 

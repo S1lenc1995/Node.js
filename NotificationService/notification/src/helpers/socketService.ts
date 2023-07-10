@@ -1,35 +1,37 @@
-import {Server} from "socket.io"
-class SocketService{
-    private io;
-    private inited = false;
-    private useSockets = {};
+import { Server } from "socket.io";
+class SocketService {
+  private io;
+  private inited = false;
+  private userSockets = {};
 
-    init = (server)=>{
-        this.inited = true;
-        this.io = new Server(server);
-        this.io.on("connection", (socket)=>{
-            console.log("a user connected");
-            socket.on("attach",({userId})=>{
-                console.log("a user attached this id:" + userId)
-                this.useSockets[userId] = socket
-            });
-            socket.on("disconnect", ()=>{
-                console.log("use disconnected")
-            });
-        });
-    };
-    emit = (userId, event, data) =>{
-        if(!this.inited){
-            return console.error("Socker server was not inited");
-        }
-        this.useSockets[userId].emit(event,data);
+  init = (server) => {
+    this.inited = true;
+    this.io = new Server(server);
+    this.io.on("connection", (socket) => {
+      console.log("a user connected");
+      socket.on("attach", ({ userId }) => {
+        console.log("a user attached with id:" + userId);
+        socket.userId = userId;
+        this.userSockets[userId] = socket;
+      });
+      socket.on("disconnect", () => {
+        this.userSockets[socket.userId] = null;
+        console.log("user disconnected");
+      });
+    });
+  };
+  emit = (userId, event, data) => {
+    if (!this.inited) {
+      return console.error("Socker server was not inited!");
     }
-    emitAll = (event, data) => {
-        if(!this.inited){
-            return console.error("Socker server was not inited");
-        }
-        this.io.emit(event, data);
-    };
+    this.userSockets[userId].emit(event, data);
+  };
+  emitAll = (event, data) => {
+    if (!this.inited) {
+      return console.error("Socker server was not inited!");
+    }
+    this.io.emit(event, data);
+  };
 }
 
-export default new SocketService()
+export default new SocketService();
