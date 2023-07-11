@@ -2,6 +2,7 @@ import {createSlice, current} from "@reduxjs/toolkit";
 import axios from "axios";
 import setAuthToken from "../helpers/setAuthToken";
 
+
 const initialState = {
     allPosts:[],
     currentPost: null,

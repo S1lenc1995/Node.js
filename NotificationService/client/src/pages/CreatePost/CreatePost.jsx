@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actionFetchCreateNewPost } from "../../reducers";
 import ButtonToMainPage from "../../components/ButtonToMainPage";
 import { selectorToken } from "../../selectors";
+import { io } from "socket.io-client";
 
 
 import "./CreatePost.scss"
@@ -31,6 +32,13 @@ const CreatePost = () => {
           }
           dispatch(actionFetchCreateNewPost(values))
           resetForm();
+          const socket = io(); 
+          socket.emit("attach", { userId: 4 })
+          socket.on("message", (notification) => {
+            console.log(notification, '1111111111111111111111111111111111111111111111')
+             const { title} = notification;
+             alert(`Нова новина: ${title}`);
+           });
         }}> 
        
         {({values, handleChange}) => (
