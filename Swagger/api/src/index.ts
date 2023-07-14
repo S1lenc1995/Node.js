@@ -9,7 +9,7 @@ import { AppDataSource } from "./dal/appDataSource";
 AppDataSource.initialize().then( async() => {
   const app = new App(
     [Container.get(PostsController), Container.get(AuthController)],
-    8080
+    3000
   );
   app.listen();
 })

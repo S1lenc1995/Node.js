@@ -24,7 +24,6 @@ const CreatePost = () => {
         <Formik 
         initialValues={{ title: '', content: '',/*  author: '', */ genre: '', isPrivate: false }} 
         onSubmit={(values, { resetForm }) => {
-          console.log(values, '3333333');
           for (const key in values) {
             if (values[key] === '') {
               delete values[key];

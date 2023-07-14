@@ -105,7 +105,7 @@ class AuthController {
   
     const user = await this.usersService.createdNewUser(newUser);
 
-    const token = jwt.sign({ user_id: user.id, email }, this.privateKey, {
+    const token = jwt.sign({ user_id: user.id, email },  "secret", {
       expiresIn: "2h",
     }); 
 

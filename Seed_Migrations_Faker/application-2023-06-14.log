@@ -1,0 +1,3 @@
+2023-06-13T21:05:03.863Z info: OPTIONS:/api/posts
+2023-06-13T21:05:27.226Z info: OPTIONS:/auth/register
+2023-06-13T21:05:27.273Z info: POST:/auth/register

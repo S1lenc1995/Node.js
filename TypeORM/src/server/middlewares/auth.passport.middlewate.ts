@@ -1,4 +1,4 @@
-import { expressjwt, ExpressJwtRequest } from "express-jwt";
+import { expressjwt } from "express-jwt";
 
 const getTokenFromHeaders = (req) => {
   
@@ -27,6 +27,6 @@ const auth = {
     algorithms: ["HS256"],
   }),
 };
-console.log(auth.required, '33333333333333333')
+
 
 export default auth;

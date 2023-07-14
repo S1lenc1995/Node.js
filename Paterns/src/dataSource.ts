@@ -1,4 +1,4 @@
-import { DataSource } from "typeorm";
+/* import { DataSource } from "typeorm";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -11,3 +11,5 @@ export const AppDataSource = new DataSource({
     synchronize: false,
     migrations: ["src/dal/migrations/*.ts"],
 });
+ */
+

@@ -1,0 +1,13 @@
+2023-06-13T21:12:55.312Z info: GET:/ws
+2023-06-13T21:12:56.602Z info: GET:/ws
+2023-06-13T21:12:58.708Z info: GET:/ws
+2023-06-13T21:12:58.895Z info: GET:/favicon.ico
+2023-06-13T21:12:58.912Z info: GET:/logo192.png
+2023-06-13T21:12:58.919Z info: GET:/logo512.png
+2023-06-13T21:13:02.822Z info: GET:/ws
+2023-06-13T21:13:10.857Z info: GET:/ws
+2023-06-13T21:13:18.223Z info: GET:/favicon.ico
+2023-06-13T21:13:24.991Z info: POST:/auth/register
+2023-06-13T21:13:28.279Z info: GET:/ws
+2023-06-13T21:13:28.284Z info: GET:/api/posts
+2023-06-13T21:13:28.292Z error: invalid signature

@@ -64,9 +64,9 @@ class PostsController {
 
 
         } catch (error) {
+            console.log(error, '11111111111')
             response.sendStatus(500);
         }
-
     }
 
     getById = async (request: express.Request, response: express.Response) => {

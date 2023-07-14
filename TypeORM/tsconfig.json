@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "target": "es2017",
+    "target": "es2016",
     "outDir": "./build",
     "baseUrl": "./src",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "CommonJS",
     "esModuleInterop": true,
-    "lib": ["ES2017"],
+    "lib": ["ES6"],
     "types": ["reflect-metadata"],
     "moduleResolution": "node",
     "paths": {"typedi": ["node_modules/typedi/dist/index.d.ts"] },
