@@ -8,17 +8,11 @@ export class ForbiddenExceptionFilter extends GlobalExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const status = exception.getStatus();
-    console.log('++++++++++++++++++++++++')
-
-    if (status === HttpStatus.FORBIDDEN) {
       response.status(status).json({
         statusCode: status,
         message: 'API_KEY is invalid',
         timestamp: new Date().toISOString(),
         path: ctx.getRequest<Request>().url,
       });
-    } else {
-      super.catch(exception, host);
-    }
   }
-}
+} 

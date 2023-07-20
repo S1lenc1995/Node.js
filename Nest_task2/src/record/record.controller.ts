@@ -10,12 +10,19 @@ import {
   Post,
   Put,
   Redirect,
+  ParseIntPipe,
+  UseGuards,
+  UsePipes,
 } from '@nestjs/common';
 import { RecordService } from './record.service';
 import { CreateRecordDto, UpdateRecordDto } from './dto/record.dto';
 import { HashService } from 'src/common/hashService/hash.service';
+import { ApiGuard } from './api_guard';
+import { PostValidationPipe } from './record_validation_pipe';
+import { CreateRecordSchema } from './dto/record.dto';
 
 @Controller('records')
+@UseGuards(ApiGuard)
 export class RecordController {
   constructor(private readonly recordService: RecordService, private readonly hashService: HashService) { }
 
@@ -25,29 +32,31 @@ export class RecordController {
   }
 
   @Get(':id')
-  getOneUnDecoded(@Param('id') id: number) {
+  getOneUnDecoded(@Param('id', ParseIntPipe) id: number) {
     return this.recordService.getAll()[id - 1];
   }
 
   @Get(':id/decoded')
-  getOneDecoded(@Param('id') id: number) {
+  getOneDecoded(@Param('id', ParseIntPipe) id: number) {
     return this.hashService.decodeRecord(this.recordService.getAll()[id - 1]);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @Header('Cache-Control', 'none')
+  @UsePipes(new PostValidationPipe(CreateRecordSchema))
   create(@Body() createPostDto: CreateRecordDto) {
     return this.recordService.create(createPostDto);
   }
 
   @Put(':id')
-  update(@Body() updatePostDto: UpdateRecordDto, @Param('id') id: number) {
+  @UsePipes(new PostValidationPipe(CreateRecordSchema))
+  update(@Body() updatePostDto: UpdateRecordDto, @Param('id', ParseIntPipe) id: number) {
     return this.recordService.update(id, updatePostDto)
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.recordService.delete(id);
   }
 }
