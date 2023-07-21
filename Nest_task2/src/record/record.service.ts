@@ -14,7 +14,7 @@ export class RecordService {
   create(post: Record) {
     const id = this.records.length + 1;
     this.records.push(this.hashService.encodeRecord({ ...post, id }));
-    return id;
+    return this.hashService.encodeRecord({ ...post, id })
   }
 
   update(idToUpdate: number, updatedRecord) {

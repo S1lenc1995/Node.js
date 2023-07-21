@@ -13,6 +13,9 @@ import {
   ParseIntPipe,
   UseGuards,
   UsePipes,
+  UseInterceptors,
+  Res,
+  NotFoundException
 } from '@nestjs/common';
 import { RecordService } from './record.service';
 import { CreateRecordDto, UpdateRecordDto } from './dto/record.dto';
@@ -20,25 +23,37 @@ import { HashService } from 'src/common/hashService/hash.service';
 import { ApiGuard } from './api_guard';
 import { PostValidationPipe } from './record_validation_pipe';
 import { CreateRecordSchema } from './dto/record.dto';
+import { LoggingInterceptor } from './logging.interceptor';
 
 @Controller('records')
+@UseInterceptors(LoggingInterceptor) 
 @UseGuards(ApiGuard)
 export class RecordController {
   constructor(private readonly recordService: RecordService, private readonly hashService: HashService) { }
 
   @Get()
   getAll() {
-    return this.recordService.getAll();
+    return { status: 200, data: this.recordService.getAll()};
   }
 
   @Get(':id')
   getOneUnDecoded(@Param('id', ParseIntPipe) id: number) {
-    return this.recordService.getAll()[id - 1];
+    const record = this.recordService.getAll()[id - 1];
+    if (!record) {
+      throw new NotFoundException('Record not found');
+    }
+    return { status: 200, data: record };
   }
 
   @Get(':id/decoded')
   getOneDecoded(@Param('id', ParseIntPipe) id: number) {
-    return this.hashService.decodeRecord(this.recordService.getAll()[id - 1]);
+    const record = this.recordService.getAll()[id - 1];
+    if (!record) {
+      throw new NotFoundException('Record not found');
+    }
+
+    const decodedRecord = this.hashService.decodeRecord(record);
+    return { status: 200, data: decodedRecord };
   }
 
   @Post()
@@ -46,17 +61,17 @@ export class RecordController {
   @Header('Cache-Control', 'none')
   @UsePipes(new PostValidationPipe(CreateRecordSchema))
   create(@Body() createPostDto: CreateRecordDto) {
-    return this.recordService.create(createPostDto);
+    return { status: 200, data: this.recordService.create(createPostDto)};
   }
 
   @Put(':id')
   @UsePipes(new PostValidationPipe(CreateRecordSchema))
   update(@Body() updatePostDto: UpdateRecordDto, @Param('id', ParseIntPipe) id: number) {
-    return this.recordService.update(id, updatePostDto)
+    return { status: 200, data: this.recordService.update(id, updatePostDto)};
   }
 
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
-    return this.recordService.delete(id);
+    return { status: 200, data: this.recordService.delete(id)};
   }
 }
