@@ -73,7 +73,7 @@ class PostsController {
     getById = async (request: express.Request, response: express.Response) => {
         try {
             const getById = await this.postsService.getById(Number(request.params.id))
-            /* getById === null ? response.sendStatus(404) : response.send(getById) */
+           //  getById === null ? response.sendStatus(404) : response.send(getById) 
             if (getById === null) {
                 response.sendStatus(404);
               } else {
