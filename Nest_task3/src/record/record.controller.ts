@@ -22,7 +22,7 @@ import { CreateRecordDto, UpdateRecordDto } from './dto/record.dto';
 import { HashService } from 'src/common/hashService/hash.service';
 import { ApiGuard } from './api_guard';
 import { PostValidationPipe } from './record_validation_pipe';
-import { CreateRecordSchema } from './dto/record.dto';
+import { CreateRecordSchema, UpdateRecordSchema } from './dto/record.dto';
 import { LoggingInterceptor } from './logging.interceptor';
 
 @Controller('records')
@@ -39,25 +39,24 @@ export class RecordController {
     return await this.recordService.getAll()
   }
 
- /*  @Get(':id')
-  getOneUnDecoded(@Param('id', ParseIntPipe) id: number) {
-    const record = this.recordService.getAll()[id - 1];
+  @Get(':id')
+  async getOneUnDecoded(@Param('id', ParseIntPipe) id: number) {
+    const record = await this.recordService.getOne(id);
     if (!record) {
       throw new NotFoundException('Record not found');
     }
-    return { status: 200, data: record };
+    return record;
   }
 
   @Get(':id/decoded')
-  getOneDecoded(@Param('id', ParseIntPipe) id: number) {
-    const record = this.recordService.getAll()[id - 1];
+  async getOneDecoded(@Param('id', ParseIntPipe) id: number) {
+    const record = await this.recordService.getOne(id);
     if (!record) {
       throw new NotFoundException('Record not found');
     }
-
-    const decodedRecord = this.hashService.decodeRecord(record);
-    return { status: 200, data: decodedRecord };
-  } */
+    const decodedRecord = this.hashService.decodeRecord(record.content)
+    return decodedRecord
+  } 
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -67,14 +66,15 @@ export class RecordController {
     return await this.recordService.create(createPostDto);
   }
 
-/*   @Put(':id')
-  @UsePipes(new PostValidationPipe(CreateRecordSchema))
+  @Put(':id')
+ /*  @UsePipes(new PostValidationPipe(UpdateRecordSchema)) */
   update(@Body() updatePostDto: UpdateRecordDto, @Param('id', ParseIntPipe) id: number) {
-    return { status: 200, data: this.recordService.update(id, updatePostDto)};
+    console.log(updatePostDto)
+    return this.recordService.update(id, updatePostDto)
   }
 
-  @Delete(':id')
+   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
-    return { status: 200, data: this.recordService.delete(id)};
-  } */
+    return this.recordService.delete(id);
+  }  
 }

@@ -1,4 +1,4 @@
-import { Injectable, Inject} from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Record } from './interfaces/record.interface';
 import { HashService } from 'src/common/hashService/hash.service';
 import { Repository } from 'typeorm';
@@ -7,17 +7,25 @@ import { Record as RecordEntity } from '../database/entity/record/record.entity'
 
 @Injectable()
 export class RecordService {
-  
+
   constructor(
-    
-   
-   @Inject('RECORD_REPOSITORY')
-   private recordRepository: Repository<RecordEntity>,
-   private readonly hashService: HashService,
-  ) {}
+
+
+    @Inject('RECORD_REPOSITORY')
+    private recordRepository: Repository<RecordEntity>,
+    private readonly hashService: HashService,
+  ) { }
 
   async getAll(): Promise<RecordEntity[]> {
     return this.recordRepository.find()
+  }
+
+  async getOne(id: number): Promise<RecordEntity> {
+    const record = await this.recordRepository.findOne({ where: { id } });
+    if (!record) {
+      throw new NotFoundException('Record not found');
+    }
+    return record;
   }
 
   async create(record: Record) {
@@ -27,27 +35,17 @@ export class RecordService {
     return newRecordDB.id
   }
 
-/*   update(idToUpdate: number, updatedRecord) {
-    let newRecord
-    this.records.forEach((post, index) => {
-      let decodeRecord = this.hashService.decodeRecord(post)
-      if (decodeRecord.id == idToUpdate) {
-        this.records[index] = this.hashService.encodeRecord({ ...decodeRecord, ...updatedRecord });
-        newRecord = this.records[index]
-      }
-    });
-    return newRecord
+  async update(idToUpdate: number, updatedRecord: Partial<Record>): Promise<RecordEntity> {
+    let recordToUpdate = await this.getOne(idToUpdate);
+    recordToUpdate = this.hashService.decodeRecord(recordToUpdate.content)
+    Object.assign(recordToUpdate, updatedRecord);
+    const encodeRecord = this.hashService.encodeRecord(recordToUpdate)
+    await this.recordRepository.update(idToUpdate , encodeRecord)
+    return recordToUpdate;
   }
 
-  delete(idToDelete: number) {
-    for (let i = 0; i < this.records.length; i++) {
-      const decodeRecord = this.hashService.decodeRecord(this.records[i])
-      console.log(decodeRecord)
-      if (decodeRecord.id == idToDelete) {
-        this.records.splice(i, 1);
-        break;
-      }
-    }
+  async delete(idToDelete: number) {
+    await this.recordRepository.delete(idToDelete);
     return idToDelete
-  } */
+  }
 }

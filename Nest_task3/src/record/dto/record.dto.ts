@@ -15,3 +15,10 @@ export const CreateRecordSchema = Joi.object({
   content: Joi.string().required(),
 });
 
+
+
+export const UpdateRecordSchema = Joi.object({
+  title: Joi.string().max(25),
+  content: Joi.string(),
+});
+
