@@ -1,23 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject} from '@nestjs/common';
 import { Record } from './interfaces/record.interface';
 import { HashService } from 'src/common/hashService/hash.service';
+import { Repository } from 'typeorm';
+import { Record as RecordEntity } from '../database/entity/record/record.entity';
+
 
 @Injectable()
 export class RecordService {
-  private records = [];
-  constructor(private readonly hashService: HashService) { }
+  
+  constructor(
+    
+   
+   @Inject('RECORD_REPOSITORY')
+   private recordRepository: Repository<RecordEntity>,
+   private readonly hashService: HashService,
+  ) {}
 
-  getAll() {
-    return this.records;
+  async getAll(): Promise<RecordEntity[]> {
+    return this.recordRepository.find()
   }
 
-  create(post: Record) {
-    const id = this.records.length + 1;
-    this.records.push(this.hashService.encodeRecord({ ...post, id }));
-    return this.hashService.encodeRecord({ ...post, id })
+  async create(record: Record) {
+    const encodeRecord = this.hashService.encodeRecord(record)
+    const newRecordDB = this.recordRepository.create(encodeRecord);
+    await this.recordRepository.save(newRecordDB)
+    return newRecordDB.id
   }
 
-  update(idToUpdate: number, updatedRecord) {
+/*   update(idToUpdate: number, updatedRecord) {
     let newRecord
     this.records.forEach((post, index) => {
       let decodeRecord = this.hashService.decodeRecord(post)
@@ -39,5 +49,5 @@ export class RecordService {
       }
     }
     return idToDelete
-  }
+  } */
 }

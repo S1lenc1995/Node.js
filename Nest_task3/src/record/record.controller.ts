@@ -29,14 +29,17 @@ import { LoggingInterceptor } from './logging.interceptor';
 @UseInterceptors(LoggingInterceptor) 
 @UseGuards(ApiGuard)
 export class RecordController {
-  constructor(private readonly recordService: RecordService, private readonly hashService: HashService) { }
+  constructor(
+    private readonly recordService: RecordService, 
+    private readonly hashService: HashService
+    ) { }
 
   @Get()
-  getAll() {
-    return { status: 200, data: this.recordService.getAll()};
+  async getAll() {
+    return await this.recordService.getAll()
   }
 
-  @Get(':id')
+ /*  @Get(':id')
   getOneUnDecoded(@Param('id', ParseIntPipe) id: number) {
     const record = this.recordService.getAll()[id - 1];
     if (!record) {
@@ -54,17 +57,17 @@ export class RecordController {
 
     const decodedRecord = this.hashService.decodeRecord(record);
     return { status: 200, data: decodedRecord };
-  }
+  } */
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @Header('Cache-Control', 'none')
   @UsePipes(new PostValidationPipe(CreateRecordSchema))
-  create(@Body() createPostDto: CreateRecordDto) {
-    return { status: 200, data: this.recordService.create(createPostDto)};
+  async create(@Body() createPostDto: CreateRecordDto) {
+    return await this.recordService.create(createPostDto);
   }
 
-  @Put(':id')
+/*   @Put(':id')
   @UsePipes(new PostValidationPipe(CreateRecordSchema))
   update(@Body() updatePostDto: UpdateRecordDto, @Param('id', ParseIntPipe) id: number) {
     return { status: 200, data: this.recordService.update(id, updatePostDto)};
@@ -73,5 +76,5 @@ export class RecordController {
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
     return { status: 200, data: this.recordService.delete(id)};
-  }
+  } */
 }
